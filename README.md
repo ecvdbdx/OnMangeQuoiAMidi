@@ -19,18 +19,12 @@ ECV PHP Project - Symfony3 (Docker)
         - password : root
     6 - Lauch brower on symfony.dev/app_dev.php
 
-### About docker image integration on PHPStorm
+### Add remote PHP interpreter in PHPStorm
 
-SSH settings    
-  - user: root
-  - pass: lbmonkey
-
-Integration:
-
-    Add remote php interpreter with the credentials 
-
-    Add sftp mapping to /app
+    In PHPStorm go to Settings ->  Languages & Frameworks -> PHP
     
-    To finish add a phpunit for the remote interpreter:
-        Autoload on /app/app/autoload.php
-        Config on /app/phpunit.xml.dist
+    Add a new remote interpreter using the following SSH credentials
+        - host: localhost
+        - port: 2222
+        - user: root
+        - password: lbmonkey
