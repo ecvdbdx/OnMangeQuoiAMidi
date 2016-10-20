@@ -18,4 +18,15 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
         ]);
     }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function aboutAction()
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/about.html.twig', [
+            'base_dir' => 'toto',
+        ]);
+    }
 }
