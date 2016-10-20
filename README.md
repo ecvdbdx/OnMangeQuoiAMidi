@@ -8,18 +8,23 @@ ECV PHP Project - Symfony3 (Docker)
 
 ### Installation
     
-    1 - git clone https://github.com/Bramvanosta/ECV_PHP.git
-    2 - Add '127.0.0.1 symfony.dev' to /etc/hosts
-    3 - docker-compose up
-    4 - docker exec -it symfony_php composer install
-    5 - Enter these parameters when asked to configure the database
+    1 - Clone this repository
+    2 - Point the container's IP address to symfony.dev
+        - ex: '127.0.0.1 symfony.dev' > /etc/hosts
+    3 - Install and launch the containers
+        - 'docker-compose up'
+    4 - Install Symfony's dependencies using composer
+        - 'docker exec -it symfony_php composer install'
+    5 - Enter these parameters when asked to configure the database. Leave the rest as default
         - host : db
         - database name : symfony
         - user : root
         - password : root
-    6 - Lauch brower on symfony.dev/app_dev.php
+    6 - Restart the docker containers
+    7 - Launch the brower on symfony.dev/app_dev.php
 
-### Add remote PHP interpreter in PHPStorm
+
+### Add remote PHP interpreter in PHPStorm (optional)
 
     In PHPStorm go to Settings ->  Languages & Frameworks -> PHP
     
