@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Place list</h1>
 
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -17,23 +17,13 @@
                 <td><a href="{{ path('place_show', { 'id': place.id }) }}">{{ place.id }}</a></td>
                 <td>{{ place.name }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('place_show', { 'id': place.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('place_edit', { 'id': place.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a class="btn btn-info" href="{{ path('place_show', { 'id': place.id }) }}" role="button"><i class="glyphicon glyphicon-info-sign"></i> Show</a>
+                    <a class="btn btn-default" href="{{ path('place_edit', { 'id': place.id }) }}" role="button"><i class="glyphicon glyphicon-edit"></i> Edit</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('place_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <a href="{{ path('place_new') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Create a new entry</a>
 {% endblock %}
