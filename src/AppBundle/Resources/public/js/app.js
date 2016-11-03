@@ -1,1 +1,3 @@
 // APP.JS
+
+$(document).foundation();

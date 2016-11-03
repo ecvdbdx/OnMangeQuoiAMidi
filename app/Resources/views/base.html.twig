@@ -2,14 +2,34 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="stylesheet" href="{{ asset('bundles/app/css/style.css') }}"/>
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
+
 <body>
-{% block body %}{% endblock %}
+
+<div class="off-canvas-wrapper">
+    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper="">
+        {% include 'partials/sidebar.html.twig' %}
+        <main class="off-canvas-content" data-off-canvas-content="">
+            <div class="title-bar hide-for-large">
+                <div class="title-bar-left">
+                    <button class="menu-icon" type="button" data-open="my-info" aria-expanded="false"
+                            aria-controls="my-info"></button>
+                    <span class="title-bar-title">Mike Mikerson</span>
+                </div>
+            </div>
+            {% block body %}{% endblock %}
+            <div class="js-off-canvas-exit"></div>
+        </main>
+    </div>
+</div>
+
 <script src="{{ asset('bundles/app/js/build/build.js') }}"></script>
 {% block javascripts %}{% endblock %}
+
 </body>
 </html>

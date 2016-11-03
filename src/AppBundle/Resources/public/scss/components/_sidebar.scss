@@ -1,0 +1,12 @@
+@import "../variables";
+
+.sidebar__container {
+  background-color: $blue-grey-800;
+  height: 100%;
+}
+
+.sidebar__main-menu {
+  a {
+    color: $white;
+  }
+}

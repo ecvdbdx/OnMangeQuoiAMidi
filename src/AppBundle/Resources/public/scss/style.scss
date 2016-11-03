@@ -1,6 +1,10 @@
 // Import Foundation from Node_Modules
-@import "foundation";
+@import 'foundation';
 
 // Import Flex grid from Foundation
 @include foundation-flex-classes;
 @include foundation-flex-grid;
+
+// Import Components
+@import 'components/sidebar';
+@import 'components/layout';
