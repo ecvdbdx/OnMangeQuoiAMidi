@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Place;
 use AppBundle\Form\PlaceType;
 
-/**
+/** 
  * Place controller.
  *
  * @Route("/place")
