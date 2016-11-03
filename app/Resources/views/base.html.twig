@@ -5,10 +5,39 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" >
-        <link rel="stylesheet" type="text/css" href="/assets/vendor/foundation-sites/dist/foundation-flex.css" >
+        <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendor/foundation-sites/dist/foundation-flex.css') }}" >
+        <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/app/style.css') }}" >
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="off-canvas-wrapper">
+            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+                <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
+                    <div class="row column">
+                        <ul class="vertical menu" data-drilldown>
+                            <li>
+                                <a href="{{ path('homepage') }}">Home</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('about') }}">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="off-canvas-content" data-off-canvas-content>
+                    {% block body %}{% endblock %}
+                </div>
+
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
+
