@@ -10,17 +10,7 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet"
-          href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link rel="stylesheet"
-          href="{{ asset('assets/css/ie10-viewport-bug-workaround.css') }}">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+          href="{{ asset('bundles/app/css/style.css') }}">
 
         {% block stylesheets %}
             <!-- Custom styles for this template -->
@@ -135,7 +125,6 @@
 
         </div> <!-- /container -->
         {% block javascripts %}{% endblock %}
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="{{ asset('bundles/app/js/build.js') }}"></script>
     </body>
 </html>
