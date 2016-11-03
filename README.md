@@ -8,6 +8,17 @@ ECV PHP Project - Symfony3 (Docker)
 
 ### Installation
     
+    Hi ! 
+    How are you today guys ! Me i'm good. Last night, I ate pastas and yeah. Well. 
+    SO ! 
+    EVERYBODY CALM THE FUCK DOWWWWN. 
+    In order to install the project, you need a fewwww dependicies.
+    Alright. 
+    SO. 
+    You need to install first : 
+    - npm
+    - bower
+    
     1 - Clone this repository
     2 - Point the container's IP address to symfony.dev
         - ex: '127.0.0.1 symfony.dev' > /etc/hosts
@@ -21,7 +32,9 @@ ECV PHP Project - Symfony3 (Docker)
         - user : root
         - password : root
     6 - Restart the docker containers
-    7 - Launch the brower on symfony.dev/app_dev.php
+    7 - Install foundation
+        - 'bower install'
+    8 - Launch the brower on symfony.dev/app_dev.php
 
 
 ### Add remote PHP interpreter in PHPStorm (optional)
