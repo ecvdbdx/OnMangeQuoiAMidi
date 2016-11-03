@@ -36,4 +36,6 @@ ECV PHP Project - Symfony3 (Docker)
 
 ### Front dependencies installation
 
-````$ ~ cd App/Resources/public && npm install```
+- Make sure Node & NPM are installed
+
+````$ ~ cd src/AppBundle/Resources/public && npm install```
