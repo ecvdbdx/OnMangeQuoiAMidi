@@ -138,3 +138,8 @@ Temporary Items
 
 supervisord.log
 supervisord.pid
+
+# Front-End assets
+node_modules
+src/AppBundle/Resources/public/css/style.css
+src/AppBundle/Resources/public/js/build/

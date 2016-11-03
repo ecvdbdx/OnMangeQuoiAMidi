@@ -1,0 +1,27 @@
+{
+  "name": "on_mange_quoi_a_midi",
+  "version": "0.0.1",
+  "description": "On Mange Quoi a Midi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OnMangeQuoiAMidi/ECV_PHP.git"
+  },
+  "author": "ECV Digital",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OnMangeQuoiAMidi/ECV_PHP/issues"
+  },
+  "homepage": "https://github.com/OnMangeQuoiAMidi/ECV_PHP#readme",
+  "dependencies": {
+    "foundation-sites": "^6.2.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-sass": "^2.1.0",
+    "gulp-uglify": "^2.0.0"
+  }
+}
