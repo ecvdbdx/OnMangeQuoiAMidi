@@ -6,7 +6,13 @@ ECV PHP Project - Symfony3 (Docker)
 - Nginx 1.9.1
 - PHP 7.0.7
 
+### Dependencies
+
+- Npm
+
 ### Installation
+
+#### Docker
     
     1 - Clone this repository
     2 - Point the container's IP address to symfony.dev
@@ -22,6 +28,20 @@ ECV PHP Project - Symfony3 (Docker)
         - password : root
     6 - Restart the docker containers
     7 - Launch the brower on symfony.dev/app_dev.php
+    
+#### Front-End
+    
+    On your host machine:
+    1 - Install all the Node dependencies
+        - 'npm install'
+    2 - Install Gulp globally
+        - 'npm install -g gulp'
+    3 - Compile the front-end assets using Gulp
+        - 'gulp'
+    4 - Symlink the assets in symfony
+        - 'docker exec -it symfony_php bin/console assets:install --symlink'
+        
+    Now when you update the style.scss or app.js file, the bundled files are updated automatically by Gulp.
 
 
 ### Add remote PHP interpreter in PHPStorm (optional)
