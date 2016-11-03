@@ -33,3 +33,7 @@ ECV PHP Project - Symfony3 (Docker)
         - port: 2222
         - user: root
         - password: lbmonkey
+
+### Front dependencies installation
+
+````npm install````

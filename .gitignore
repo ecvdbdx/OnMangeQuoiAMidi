@@ -138,3 +138,5 @@ Temporary Items
 
 supervisord.log
 supervisord.pid
+
+node_modules
