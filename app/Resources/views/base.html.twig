@@ -8,6 +8,39 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+
+        {% block menu %}
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{ path('place_index') }}">OnMangeQuoiAMidi</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="{% if app.request.attributes.get('_route') == 'place_new' %}active{% endif %} ">
+                                <a href="{{ path('place_new') }}">Ajouter</a>
+                            </li>
+                            <li class="{% if app.request.attributes.get('_route') == 'about' %}active{% endif %} ">
+                                <a href="{{ path('about') }}">A Propos</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+
+        {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
