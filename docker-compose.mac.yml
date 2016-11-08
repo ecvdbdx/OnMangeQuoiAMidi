@@ -1,0 +1,8 @@
+version: '2'
+services:
+  nginx:
+    volumes_from:
+      - container:project-sync:rw
+  php:
+    volumes_from:
+      - container:project-sync:rw
