@@ -1,0 +1,22 @@
+// 01 SETTINGS - Used with preprocessors and contain font, colors definitions, etc.
+@import 'color-definitions';
+@import 'variables';
+@import '01_settings/colors';
+
+// 02 TOOLS - Globally used mixins and functions. It’s important not to output any CSS in the first 2 layers.
+@import 'functions';
+@import 'mixins';
+
+// 03 GENERIC - Reset and/or normalize styles, box-sizing definition, etc. This is the first layer which generates actual CSS.
+@import 'resets/resets';
+
+// 04 ELEMENTS - Styling for bare HTML elements (like H1, A, etc.). These come with default styling from the browser so we can redefine them here.
+@import 'typography/typography';
+
+// 05 OBJECTS - Class-based selectors which define undecorated design patterns, for example media object known from OOCSS
+@import 'shadow/shadow';
+@import 'grid/grid';
+
+// 06 COMPONENTS - Specific UI components. This is where majority of our work takes place and our UI components are often composed of Objects and Components
+
+// 07 TRUMPS - Utilities and helper classes with ability to override anything which goes before in the triangle, eg. hide helper class

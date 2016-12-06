@@ -3,7 +3,9 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var size = require('gulp-size');
-var notify = require("gulp-notify");
+var notify = require('gulp-notify');
+var rollup = require('gulp-rollup');
+var rename = require('gulp-rename');
 
 /** Tasks */
 
@@ -14,7 +16,7 @@ gulp.task('default', ['sass', 'js'], function () {
 
 /** Sass */
 
-var sassInput = './src/AppBundle/Resources/public/scss/style.scss';
+var sassInput = './src/AppBundle/Resources/public/scss/main.scss';
 var sassPaths = [
   './node_modules/material-design-lite/src'
 ];
@@ -42,16 +44,16 @@ gulp.task('sass', function () {
 
 /** JS **/
 
-var jsInput = [
-    './node_modules/jquery/dist/jquery.js',
-    './node_modules/foundation-sites/dist/foundation.js',
-    './src/AppBundle/Resources/public/js/app.js'
-];
-var jsOutput = './src/AppBundle/Resources/public/js/build';
+var jsInput = './src/AppBundle/Resources/public/js/app.js';
+var jsOutput = './src/AppBundle/Resources/public/js/';
 
 gulp.task('js', function () {
-    return gulp.src(jsInput)
-        .pipe($.concat('build.js'))
-        .pipe($.uglify())
+    return gulp
+        .src(jsInput)
+        .pipe(sourcemaps.init())
+        .pipe(rollup({entry: jsInput}))
+        .pipe(sourcemaps.write())
+        .pipe(notify("JS file generated"))
+        .pipe(rename('bundle.js'))
         .pipe(gulp.dest(jsOutput))
 });
