@@ -138,3 +138,6 @@ Temporary Items
 
 supervisord.log
 supervisord.pid
+
+# Front-end assets
+node_modules

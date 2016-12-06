@@ -1,0 +1,38 @@
+{
+  "name": "on_mange_quoi_a_midi",
+  "version": "0.0.1",
+  "description": "On Mange Quoi A Midi, a symfony application made by ECV Digital Master Development",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecvdbdx1617/OnMangeQuoiAMidi.git"
+  },
+  "author": "ECV Digital",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ecvdbdx1617/OnMangeQuoiAMidi/issues"
+  },
+  "homepage": "https://github.com/ecvdbdx1617/OnMangeQuoiAMidi#readme",
+  "dependencies": {
+    "material-design-lite": "^1.2.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.1.0",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^2.1.1",
+    "gulp-uglify": "^2.0.0"
+  }
+}
