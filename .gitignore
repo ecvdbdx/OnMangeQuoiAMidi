@@ -141,5 +141,6 @@ supervisord.pid
 
 # Front-end assets
 node_modules
+npm-debug.log
 src/AppBundle/Resources/public/css/*
 src/AppBundle/Resources/public/js/bundle.js

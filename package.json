@@ -7,8 +7,16 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "gulp"
+    "build:js:dev": "browserify src/AppBundle/Resources/public/js/main.js --debug -o src/AppBundle/Resources/public/js/bundle.js -t rollupify && npm run lint:js",
+    "build:js:prod": "browserify src/AppBundle/Resources/public/js/main.js -o src/AppBundle/Resources/public/js/bundle.js -t rollupify",
+    "watch:js": "onchange 'src/AppBundle/Resources/public/js/**/*.js' -e 'src/AppBundle/Resources/public/js/bundle.js' -- npm run build:js:dev",
+    "uglify:js": "uglifyjs src/AppBundle/Resources/public/js/bundle.js -m -o src/AppBundle/Resources/public/js/bundle.js",
+    "lint:js": "eslint src/AppBundle/Resources/public/js",
+    "build:css:dev": "node-sass --source-map true --include-path src/AppBundle/Resources/public/scss --include-path node_modules/material-design-lite/src -o src/AppBundle/Resources/public/css src/AppBundle/Resources/public/scss/main.scss",
+    "build:css:prod": "node-sass --output-style compressed --include-path src/AppBundle/Resources/public/scss --include-path node_modules/material-design-lite/src -o src/AppBundle/Resources/public/css src/AppBundle/Resources/public/scss/main.scss",
+    "watch:css": "onchange 'src/AppBundle/Resources/public/scss/**/*.scss' -- npm run build:css:dev",
+    "build:dev": "npm run build:js:dev && npm run build:css:dev",
+    "build:prod": "npm run build:js:prod && npm run uglify:js && npm run build:css:prod"
   },
   "repository": {
     "type": "git",
@@ -25,14 +33,12 @@
     "material-design-lite": "^1.2.1"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-load-plugins": "^1.1.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-rollup": "^2.5.1",
-    "gulp-sass": "^2.1.0",
-    "gulp-size": "^2.1.0",
-    "gulp-sourcemaps": "^2.1.1"
+    "browserify": "^13.1.1",
+    "eslint": "^3.11.1",
+    "eslint-config-google": "^0.7.1",
+    "node-sass": "^3.13.0",
+    "onchange": "^3.2.0",
+    "rollupify": "^0.3.5",
+    "uglify-js": "^2.7.5"
   }
 }
