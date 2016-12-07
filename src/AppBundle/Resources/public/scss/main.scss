@@ -16,7 +16,11 @@
 // 05 OBJECTS - Class-based selectors which define undecorated design patterns, for example media object known from OOCSS
 @import 'shadow/shadow';
 @import 'grid/grid';
+@import 'layout/layout';
 
 // 06 COMPONENTS - Specific UI components. This is where majority of our work takes place and our UI components are often composed of Objects and Components
+@import 'button/button';
+@import 'footer/mega_footer';
+
 
 // 07 TRUMPS - Utilities and helper classes with ability to override anything which goes before in the triangle, eg. hide helper class
