@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Place;
+use AppBundle\Entity\Meal;
 use AppBundle\Form\PlaceType;
 
 /**
@@ -46,8 +47,21 @@ class PlaceController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $meal = new Meal();
+            $meal->setName("Hamburger");
+
+$meal2 = new Meal();
+            $meal2->setName("Frites");
+
+            $place->addMeal($meal);
+            $place->addMeal($meal2);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($place);
+            $em->persist($meal);
+            $em->persist($meal2);
+
             $em->flush();
 
             return $this->redirectToRoute('place_show', array('id' => $place->getId()));

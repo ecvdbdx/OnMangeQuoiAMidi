@@ -13,6 +13,16 @@
                 <th>Name</th>
                 <td>{{ place.name }}</td>
             </tr>
+            <tr>
+                <th>Meals</th>
+                <td>
+                <ul>
+                {% for meal in place.meals %}
+                    <li>{{ meal.name }}</li>
+                {% endfor %}
+</ul>
+                </td>
+            </tr>
         </tbody>
     </table>
 
