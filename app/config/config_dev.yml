@@ -33,3 +33,12 @@ monolog:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+bazinga_faker:
+    orm: doctrine
+    locale: fr_FR
+    entities:
+        AppBundle\Entity\Place:
+            number: 50
+            custom_formatters:
+                name: { method: company }
