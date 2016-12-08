@@ -42,3 +42,13 @@ bazinga_faker:
             number: 50
             custom_formatters:
                 name: { method: company }
+                description: { method: realText }
+                city: { method: city }
+                street: { method: streetAddress }
+                zip_code: { method: postcode }
+                country: { method: country }
+                phone: { method: phoneNumber }
+                mobile: { method: mobileNumber }
+                email: { method: safeEmail }
+                website: { method: url }
+                facebook: { method: url }

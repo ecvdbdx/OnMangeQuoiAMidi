@@ -50,9 +50,9 @@ class Place
     private $street;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="zip_code", type="integer")
+     * @ORM\Column(name="zip_code", type="string")
      */
     private $zip_code;
 
@@ -111,8 +111,6 @@ class Place
      * @ORM\Column(name="facebook", type="string", length=255)
      */
     private $facebook;
-
-
 
 
     /**
@@ -198,7 +196,7 @@ class Place
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getZipCode()
     {
@@ -206,7 +204,7 @@ class Place
     }
 
     /**
-     * @param int $zip_code
+     * @param string $zip_code
      */
     public function setZipCode($zip_code)
     {
@@ -230,7 +228,7 @@ class Place
     }
 
     /**
-     * @return float
+     * @return decimal
      */
     public function getLongitude()
     {
@@ -238,7 +236,7 @@ class Place
     }
 
     /**
-     * @param float $longitude
+     * @param decimal $longitude
      */
     public function setLongitude($longitude)
     {
@@ -246,7 +244,7 @@ class Place
     }
 
     /**
-     * @return float
+     * @return decimal
      */
     public function getLatitude()
     {
@@ -254,7 +252,7 @@ class Place
     }
 
     /**
-     * @param float $latitude
+     * @param decimal $latitude
      */
     public function setLatitude($latitude)
     {
@@ -340,7 +338,6 @@ class Place
     {
         $this->facebook = $facebook;
     }
-
 
 
 }
