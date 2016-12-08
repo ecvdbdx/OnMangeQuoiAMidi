@@ -1,13 +1,91 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>{% block title %}Welcome!{% endblock %}</title>
+	<link rel="stylesheet" href="{{ asset('bundles/app/css/main.css') }}" />
+    {% block stylesheets %}
+    {% endblock %}
+	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+			<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+			</div>
+			<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+				<h3>On Mange Quoi à Midi ?</h3>
+			</div>
+			<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+			</div>
+			<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+				<a href="#menu1" class="mdl-layout__tab is-active">Menu 1</a>
+				<a href="#menu2" class="mdl-layout__tab">Menu 2</a>
+				<a href="#menu3" class="mdl-layout__tab">Menu 3</a>
+				<a href="#menu4" class="mdl-layout__tab">Menu 4</a>
+				<a href="#menu5" class="mdl-layout__tab">Menu 5</a>
+			</div>
+		</header>
+
+		<main class="mdl-layout__content">
+            {% block body %}
+            {% endblock %}
+		</main>
+
+		<footer class="mdl-mega-footer">
+			<div class="mdl-mega-footer--middle-section">
+				<div class="mdl-mega-footer--drop-down-section">
+					<h1 class="mdl-mega-footer--heading">Features</h1>
+					<ul class="mdl-mega-footer--link-list">
+						<li><a href="#">About</a></li>
+						<li><a href="#">Terms</a></li>
+						<li><a href="#">Partners</a></li>
+						<li><a href="#">Updates</a></li>
+					</ul>
+				</div>
+				<div class="mdl-mega-footer--drop-down-section">
+					<h1 class="mdl-mega-footer--heading">Details</h1>
+					<ul class="mdl-mega-footer--link-list">
+						<li><a href="#">Spec</a></li>
+						<li><a href="#">Tools</a></li>
+						<li><a href="#">Resources</a></li>
+					</ul>
+				</div>
+				<div class="mdl-mega-footer--drop-down-section">
+					<h1 class="mdl-mega-footer--heading">Technology</h1>
+					<ul class="mdl-mega-footer--link-list">
+						<li><a href="#">How it works</a></li>
+						<li><a href="#">Patterns</a></li>
+						<li><a href="#">Usage</a></li>
+						<li><a href="#">Products</a></li>
+						<li><a href="#">Contracts</a></li>
+					</ul>
+				</div>
+				<div class="mdl-mega-footer--drop-down-section">
+					<h1 class="mdl-mega-footer--heading">FAQ</h1>
+					<ul class="mdl-mega-footer--link-list">
+						<li><a href="#">Questions</a></li>
+						<li><a href="#">Answers</a></li>
+						<li><a href="#">Contact us</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="mdl-mega-footer--bottom-section">
+				<div class="mdl-logo">
+					Copyright [...]
+				</div>
+				<ul class="mdl-mega-footer--link-list">
+					<li><a href="#">Mentions légales</a></li>
+				</ul>
+			</div>
+		</footer>
+	</div>
+
+	<script src="{{ asset('bundles/app/js/bundle.js') }}"></script>
+    {% block javascripts %}
+    {% endblock %}
+</body>
+
 </html>
