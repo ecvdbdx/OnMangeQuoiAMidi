@@ -5,19 +5,61 @@
 
     <table class="table table-striped">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ place.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ place.name }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ place.id }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ place.name }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ place.description }}</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>{{ place.city }}</td>
+        </tr>
+        <tr>
+            <th>Street</th>
+            <td>{{ place.street }}</td>
+        </tr>
+        <tr>
+            <th>Zip Code</th>
+            <td>{{ place.zipCode }}</td>
+        </tr>
+        <tr>
+            <th>Country</th>
+            <td>{{ place.country }}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{ place.phone }}</td>
+        </tr>
+        <tr>
+            <th>Mobile</th>
+            <td>{{ place.mobile }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ place.email }}</td>
+        </tr>
+        <tr>
+            <th>Website</th>
+            <td>{{ place.website }}</td>
+        </tr>
+        <tr>
+            <th>Facebook</th>
+            <td>{{ place.facebook }}</td>
+        </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-    <a href="{{ path('place_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Back to the list</a>
+    <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-primary"><i
+                class="glyphicon glyphicon-edit"></i> Edit</a>
+    <a href="{{ path('place_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Back to the
+        list</a>
     {{ form_start(delete_form) }}
     <input type="submit" value="Delete" class="btn btn-danger">
     {{ form_end(delete_form) }}

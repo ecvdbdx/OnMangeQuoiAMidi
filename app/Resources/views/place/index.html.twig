@@ -5,27 +5,30 @@
 
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>City</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for place in places %}
             <tr>
                 <td><a href="{{ path('place_show', { 'id': place.id }) }}">{{ place.id }}</a></td>
                 <td>{{ place.name }}</td>
-                <td>{{ place.city }}</td>
+                <td>{{ place.description }}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ path('place_show', { 'id': place.id }) }}" role="button"><i class="glyphicon glyphicon-info-sign"></i> Show</a>
-                    <a class="btn btn-default" href="{{ path('place_edit', { 'id': place.id }) }}" role="button"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                    <a class="btn btn-info" href="{{ path('place_show', { 'id': place.id }) }}" role="button"><i
+                                class="glyphicon glyphicon-info-sign"></i> Show</a>
+                    <a class="btn btn-default" href="{{ path('place_edit', { 'id': place.id }) }}" role="button"><i
+                                class="glyphicon glyphicon-edit"></i> Edit</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('place_new') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Create a new entry</a>
+    <a href="{{ path('place_new') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Create a new
+        entry</a>
 {% endblock %}
