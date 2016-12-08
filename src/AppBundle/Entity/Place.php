@@ -28,6 +28,92 @@ class Place
      */
     private $name;
 
+    /**
+     * @var text
+     *
+     * @ORM\Column(name="description", type="text", length=255)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="street", type="string", length=255)
+     */
+    private $street;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="zip_code", type="integer")
+     */
+    private $zip_code;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255)
+     */
+    private $country;
+
+    /**
+     * @var decimal
+     *
+     * @ORM\Column(name="longitude", type="decimal")
+     */
+    private $longitude;
+
+    /**
+     * @var decimal
+     *
+     * @ORM\Column(name="latitude", type="decimal")
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string")
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mobile", type="string")
+     */
+    private $mobile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="website", type="string", length=255)
+     */
+    private $website;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook", type="string", length=255)
+     */
+    private $facebook;
+
+
+
 
     /**
      * Get id
@@ -62,5 +148,200 @@ class Place
     {
         return $this->name;
     }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return text
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param text $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param string $street
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+    }
+
+    /**
+     * @return int
+     */
+    public function getZipCode()
+    {
+        return $this->zip_code;
+    }
+
+    /**
+     * @param int $zip_code
+     */
+    public function setZipCode($zip_code)
+    {
+        $this->zip_code = $zip_code;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * @param float $longitude
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @param float $latitude
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
+    }
+
+    /**
+     * @param string $mobile
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * @param string $website
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @param string $facebook
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+    }
+
+
+
 }
 
