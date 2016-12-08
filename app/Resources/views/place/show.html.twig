@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Place</h1>
 
-    <table>
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -16,17 +16,9 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('place_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('place_edit', { 'id': place.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+    <a href="{{ path('place_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Back to the list</a>
+    {{ form_start(delete_form) }}
+    <input type="submit" value="Delete" class="btn btn-danger">
+    {{ form_end(delete_form) }}
 {% endblock %}

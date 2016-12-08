@@ -1,0 +1,10 @@
+options:
+  compose-file-path: 'docker-compose.yml'
+  compose-dev-file-path: 'docker-compose.mac.yml'
+syncs:  
+  project-sync: 
+    src: '.' # the directory on the host system
+    dest: '/app' # the directory on the container
+    sync_host_port: 10872 # unique port
+    sync_strategy: 'unison-onesided'
+    watch_excludes: ['.*/.git', '.*/node_modules', '.*/bower_components', '.*/sass-cache', '.*/.sass-cache', '.*/.sass-cache', '.coffee', '.scss', '.sass', '.gitignore', /var/]
