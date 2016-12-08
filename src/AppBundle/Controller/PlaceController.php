@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\Meal;
 use AppBundle\Form\PlaceType;
+use AppBundle\Form\MealType;
 
 /**
  * Place controller.
@@ -48,19 +49,8 @@ class PlaceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $meal = new Meal();
-            $meal->setName("Hamburger");
-
-$meal2 = new Meal();
-            $meal2->setName("Frites");
-
-            $place->addMeal($meal);
-            $place->addMeal($meal2);
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($place);
-            $em->persist($meal);
-            $em->persist($meal2);
 
             $em->flush();
 
@@ -77,15 +67,31 @@ $meal2 = new Meal();
      * Finds and displays a Place entity.
      *
      * @Route("/{id}", name="place_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function showAction(Place $place)
+    public function showAction(Request $request, Place $place)
     {
         $deleteForm = $this->createDeleteForm($place);
+
+        $meal = new Meal();
+        $form = $this->createForm(MealType::class, $meal);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $meal->setPlace($place);
+
+            $em->persist($meal);
+            $em->flush();
+
+            return $this->redirectToRoute('place_show', array('id' => $place->getId()));
+        }
 
         return $this->render('place/show.html.twig', array(
             'place' => $place,
             'delete_form' => $deleteForm->createView(),
+            'formMeal'  => $form->createView(),
         ));
     }
 
@@ -134,6 +140,25 @@ $meal2 = new Meal();
         }
 
         return $this->redirectToRoute('place_index');
+    }
+
+    /**
+     * Deletes a Meal entity.
+     *
+     * @Route("/mealdelete/{id}", name="meal_delete")
+     */
+    public function deleteMealAction(Request $request, Meal $meal)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:Meal')->find($meal);
+
+        $idPlace = $entity->getPlace()->getId();
+
+        $em->remove($entity);
+        $em->flush();
+
+        return $this->redirectToRoute('place_show', array('id' => $idPlace));
     }
 
     /**

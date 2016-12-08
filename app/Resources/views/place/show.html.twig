@@ -18,13 +18,22 @@
                 <td>
                 <ul>
                 {% for meal in place.meals %}
-                    <li>{{ meal.name }}</li>
+                    <li>{{ meal.name }}<a href="{{ path('meal_delete', { 'id': meal.id }) }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></li>
                 {% endfor %}
 </ul>
                 </td>
             </tr>
         </tbody>
     </table>
+
+    {{ form_start(formMeal) }}
+        {{ form_widget(formMeal) }}
+
+        <input type="submit" value="Add" class="btn btn-primary"/>
+
+    {{ form_end(formMeal) }}
+
+    <br>
 
     <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>
     <a href="{{ path('place_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Back to the list</a>
