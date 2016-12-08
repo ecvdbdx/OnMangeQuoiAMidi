@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -111,6 +112,16 @@ class Place
      * @ORM\Column(name="facebook", type="string", length=255)
      */
     private $facebook;
+
+    /**
+     * @OneToMany(targetEntity="Menu", mappedBy="place")
+     */
+    private $menus;
+
+    public function __construct()
+    {
+        $this->menus = new ArrayCollection();
+    }
 
 
     /**
