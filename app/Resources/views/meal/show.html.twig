@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Meal</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ meal.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ meal.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ meal.description }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ meal.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('meal_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('meal_edit', { 'id': meal.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

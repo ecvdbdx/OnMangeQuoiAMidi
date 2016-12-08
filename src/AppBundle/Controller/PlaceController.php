@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Meal;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -46,6 +47,10 @@ class PlaceController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $place->addMeal(new Meal("Hamburger"));
+            $place->addMeal(new Meal("Frite"));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($place);
             $em->flush();
