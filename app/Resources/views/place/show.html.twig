@@ -13,6 +13,21 @@
                 <th>Name</th>
                 <td>{{ place.name }}</td>
             </tr>
+            </tr>
+            <tr>
+                <th>Meals</th>
+                <td>
+                    {{ dump(place) }}
+                    {% if place.meals %}
+                        <ul>
+                        {% for meal in place.meals %}
+                            <li>{{ meal.name }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif%}
+
+                </td>
+            </tr>
         </tbody>
     </table>
 
