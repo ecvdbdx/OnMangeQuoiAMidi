@@ -16,9 +16,18 @@ class PlaceType extends AbstractType
     {
         $builder
             ->add('name')
-        ;
+            ->add('description')
+            ->add('city')
+            ->add('street')
+            ->add('zip_code')
+            ->add('country')
+            ->add('phone')
+            ->add('mobile')
+            ->add('email')
+            ->add('website')
+            ->add('facebook');
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
