@@ -114,7 +114,7 @@ class Place
     private $facebook;
 
     /**
-     * @OneToMany(targetEntity="Menu", mappedBy="place")
+     * @ORM\OneToMany(targetEntity="Menu", mappedBy="place")
      */
     private $menus;
 

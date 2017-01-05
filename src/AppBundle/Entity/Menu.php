@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Meal;
+use AppBundle\Entity\Place;
 
 /**
  * Menu
@@ -37,13 +39,13 @@ class Menu
     private $price;
 
     /**
-     * @OneToMany(targetEntity="Meal", mappedBy="menu")
+     * @ORM\OneToMany(targetEntity="Meal", mappedBy="menu")
      */
     private $meals;
 
     /**
-     * @ManyToOne(targetEntity="Place", inversedBy="menus")
-     * @JoinColumn(name="place_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Place", inversedBy="menus")
+     * @ORM\JoinColumn(name="place_id", referencedColumnName="id")
      */
     private $place;
 
