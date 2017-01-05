@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Place
@@ -111,8 +112,17 @@ class Place
      * @ORM\Column(name="facebook", type="string", length=255)
      */
     private $facebook;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Meal", mappedBy="place")
+     */
+    private $meals;
 
-
+    public function __construct()
+    {
+        $this->meals = new ArrayCollection();
+    }
+  
     /**
      * Get id
      *
@@ -339,6 +349,20 @@ class Place
         $this->facebook = $facebook;
     }
 
+    public function getMeals()
+    {
+        return $this->meals;
+    }
 
+    public function addMeal(Meal $meal)
+    {
+        $meal->setPlace($this);
+        $this->meals->add($meal);
+    }
+
+    public function removeMeal(Meal $meal)
+    {
+        $this->meals->removeElement($meal);
+    }
 }
 
