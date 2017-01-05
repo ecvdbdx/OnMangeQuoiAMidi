@@ -370,5 +370,21 @@ class Place
     {
         $this->meals->removeElement($meal);
     }
+
+    public function getMenus()
+    {
+        return $this->menus;
+    }
+
+    public function addMenu(Menu $menu)
+    {
+        $menu->setPlace($this);
+        $this->menus->add($menu);
+    }
+
+    public function removeMenu(Menu $menu)
+    {
+        $this->menus->removeElement($menu);
+    }
 }
 

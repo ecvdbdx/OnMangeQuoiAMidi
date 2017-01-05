@@ -63,15 +63,39 @@
                 </ul>
             </td>
         </tr>
+        <tr>
+            <th>Menus</th>
+            <td>
+                <ul>
+                {% for menu in place.menus %}
+                    <li>
+                        {{ menu.name }}
+                        <ul>
+                            {% for meal in menu.meals %}
+                                <li>{{ meal.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
         </tbody>
     </table>
 
-    {{ form_start(formMeal) }}
-        {{ form_widget(formMeal) }}
+    {{ form_start(add_meal_form) }}
+        {{ form_widget(add_meal_form) }}
 
         <input type="submit" value="Add" class="btn btn-primary"/>
 
-    {{ form_end(formMeal) }}
+    {{ form_end(add_meal_form) }}
+
+    {{ form_start(add_menu_form) }}
+        {{ form_widget(add_menu_form) }}
+
+        <input type="submit" value="Add" class="btn btn-primary"/>
+
+    {{ form_end(add_menu_form) }}
 
     <br>
 
