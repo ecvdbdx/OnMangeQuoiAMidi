@@ -76,6 +76,15 @@
                     margin-top: 28px;
                 }
 
+                .nav-pills>li+li{
+                    display:flex;
+                    align-items: center;
+                }
+
+                .nav>li.login>a {
+                    padding-left: 5px;
+                }
+
                 /* Responsive: Portrait tablets and up */
                 @media screen and (min-width: 768px) {
                     /* Remove the padding we set earlier */
@@ -107,6 +116,16 @@
                     <ul class="nav nav-pills pull-right">
                         <li role="presentation" class="{% if app.request.get('_route') == 'homepage' %}active{% endif %}"><a href="{{ path('homepage') }}">Accueil</a></li>
                         <li role="presentation" class="{% if app.request.get('_route') == 'about' %}active{% endif %}"><a href="{{ path('about') }}">À propos</a></li>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li role=presentation" class="login">
+                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                            </li>
+                        {% else %}
+                            <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
+                        {% endif %}
                     </ul>
                 </nav>
                 <h3 class="text-muted">On manque quoi à midi&nbsp;?</h3>
@@ -114,7 +133,9 @@
             {% endblock %}
 
             {% block body %}
+            {% endblock %}
 
+            {% block fos_user_content %}
             {% endblock %}
 
             {% block footer %}
