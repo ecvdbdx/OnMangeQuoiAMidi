@@ -3,15 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Place
  *
- * @ORM\Table(name="place")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PlaceRepository")
+ * @ORM\Table(name="meal")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MealRepository")
  */
-class Place
+class Meal
 {
     /**
      * @var int
@@ -30,15 +29,12 @@ class Place
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Meal", mappedBy="place")
-   */
-    private $meals;
-
-    public function __construct()
-    {
-        $this->meals = new ArrayCollection();
-    }
-
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="Place", inversedBy="meals")
+     * @ORM\JoinColumn(name="place_id", referencedColumnName="id")
+     */
+    private $place;
 
     /**
      * Get id
@@ -74,20 +70,17 @@ class Place
         return $this->name;
     }
 
-    public function getMeals()
+    public function getPlace()
     {
-        return $this->meals;
+        return $this->place;
     }
 
-    public function addMeal(Meal $meal)
+    public function setPlace($place)
     {
-        $meal->setPlace($this);
-        $this->meals->add($meal);
+        $this->place = $place;
+
+        return $this;
     }
 
-    public function removeMeal(Meal $meal)
-    {
-        $this->meals->removeElement($meal);
-    }
 }
 
