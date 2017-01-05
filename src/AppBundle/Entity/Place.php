@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -118,8 +119,14 @@ class Place
      */
     private $meals;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Menu", mappedBy="place")
+     */
+    private $menus;
+
     public function __construct()
     {
+        $this->menus = new ArrayCollection();  
         $this->meals = new ArrayCollection();
     }
   
