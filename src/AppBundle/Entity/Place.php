@@ -4,7 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Place
@@ -113,7 +112,7 @@ class Place
      * @ORM\Column(name="facebook", type="string", length=255)
      */
     private $facebook;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Meal", mappedBy="place")
      */
@@ -126,10 +125,10 @@ class Place
 
     public function __construct()
     {
-        $this->menus = new ArrayCollection();  
+        $this->menus = new ArrayCollection();
         $this->meals = new ArrayCollection();
     }
-  
+
     /**
      * Get id
      *
