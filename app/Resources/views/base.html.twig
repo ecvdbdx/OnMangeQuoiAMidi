@@ -107,6 +107,16 @@
                     <ul class="nav nav-pills pull-right">
                         <li role="presentation" class="{% if app.request.get('_route') == 'homepage' %}active{% endif %}"><a href="{{ path('homepage') }}">Accueil</a></li>
                         <li role="presentation" class="{% if app.request.get('_route') == 'about' %}active{% endif %}"><a href="{{ path('about') }}">À propos</a></li>
+                        <li role="presentation" class="{% if app.request.get('_route') == 'fos_user_security_login' %}active{% endif %}">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            {% else %}
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                            {% endif %}
+                        </li>
                     </ul>
                 </nav>
                 <h3 class="text-muted">On manque quoi à midi&nbsp;?</h3>
@@ -114,6 +124,10 @@
             {% endblock %}
 
             {% block body %}
+
+            {% endblock %}
+
+            {% block fos_user_content %}
 
             {% endblock %}
 
