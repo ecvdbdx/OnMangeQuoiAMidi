@@ -36,7 +36,12 @@ ECV PHP Project - Symfony3 (Docker)
     
 # Development
 
-## Populating the database
+## Populating & resetting the database
+
+### Reset database
+
+`docker exec -it symfony_php php bin/console doctrine:schema:drop --force`
+`docker exec -it symfony_php php bin/console doctrine:schema:create`
 
 ### Generate fixtures
 
