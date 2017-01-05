@@ -39,7 +39,7 @@ bazinga_faker:
     locale: fr_FR
     entities:
         AppBundle\Entity\Place:
-            number: 50
+            number: 10
             custom_formatters:
                 name: { method: company }
                 description: { method: realText }
@@ -52,3 +52,7 @@ bazinga_faker:
                 email: { method: safeEmail }
                 website: { method: url }
                 facebook: { method: url }
+        AppBundle\Entity\Meal:
+            number: 100
+            custom_formatters:
+                name: { method: company }
