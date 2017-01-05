@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +36,17 @@ class Meal
      * @ORM\JoinColumn(name="place_id", referencedColumnName="id")
      */
     private $place;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Menu", inversedBy="meals")
+     * @ORM\JoinTable(name="menus_meals")
+     */
+    private $menus;
+
+    public function __construct()
+    {
+        $this->menus = new ArrayCollection();
+    }
 
     /**
      * Get id
