@@ -4,7 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Place
@@ -370,6 +369,22 @@ class Place
     public function removeMeal(Meal $meal)
     {
         $this->meals->removeElement($meal);
+    }
+
+    public function getMenus()
+    {
+        return $this->menus;
+    }
+
+    public function addMenu(Menu $menu)
+    {
+        $menu->setPlace($this);
+        $this->menus->add($menu);
+    }
+
+    public function removeMenu(Menu $menu)
+    {
+        $this->menus->removeElement($menu);
     }
 }
 

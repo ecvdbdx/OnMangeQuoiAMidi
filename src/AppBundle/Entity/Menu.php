@@ -39,7 +39,7 @@ class Menu
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity="Meal", mappedBy="menu")
+     * @ORM\ManyToMany(targetEntity="Meal", mappedBy="menus")
      */
     private $meals;
 
@@ -111,6 +111,34 @@ class Menu
     public function getPrice()
     {
         return $this->price;
+    }
+
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    public function setPlace($place)
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    public function getMeals()
+    {
+        return $this->meals;
+    }
+
+    public function addMeal(Meal $meal)
+    {
+        $meal->setPlace($this);
+        $this->meals->add($meal);
+    }
+
+    public function removeMeal(Meal $meal)
+    {
+        $this->meals->removeElement($meal);
     }
 }
 
