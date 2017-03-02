@@ -10,4 +10,4 @@ before_script:
   - php bin/console faker:populate --env=test
 
 script:
-  - phpunit -c app
+  - bin/phpunit app
