@@ -80,13 +80,12 @@ class PlaceController extends Controller
         $deleteForm = $this->createDeleteForm($place);
 
         $meal = new Meal();
+        $meal->setPlace($place);
         $addMealForm = $this->createForm(MealType::class, $meal);
         $addMealForm->handleRequest($request);
 
         if ($addMealForm->isSubmitted() && $addMealForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-            $meal->setPlace($place);
 
             $em->persist($meal);
             $em->flush();
@@ -95,14 +94,13 @@ class PlaceController extends Controller
         }
 
         $menu = new Menu();
+        $menu->setPlace($place);
         $addMenuForm = $this->createForm(MenuType::class, $menu);
         $addMenuForm->handleRequest($request);
 
         // TODO: ADD THE MEALS TO THE MENU ENTITY
         if ($addMenuForm->isSubmitted() && $addMenuForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-            $menu->setPlace($place);
 
             $em->persist($menu);
             $em->flush();
@@ -113,7 +111,7 @@ class PlaceController extends Controller
         return $this->render('place/show.html.twig', array(
             'place' => $place,
             'delete_form' => $deleteForm->createView(),
-            'add_meal_form'  => $addMealForm->createView(),
+            'add_meal_form' => $addMealForm->createView(),
             'add_menu_form' => $addMenuForm->createView()
         ));
     }
@@ -127,7 +125,7 @@ class PlaceController extends Controller
     public function editAction(Request $request, Place $place)
     {
         $deleteForm = $this->createDeleteForm($place);
-        
+
         $editForm = $this->createForm('AppBundle\Form\PlaceType', $place);
         $editForm->handleRequest($request);
 
@@ -197,7 +195,6 @@ class PlaceController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('place_delete', array('id' => $place->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }
