@@ -15,6 +15,11 @@ use Ivory\GoogleMap\Service\Serializer\SerializerBuilder;
 use Http\Adapter\Guzzle6\Client;
 use Http\Message\MessageFactory\GuzzleMessageFactory;
 use Ivory\GoogleMap\Service\Geocoder\Request\GeocoderAddressRequest;
+use AppBundle\Entity\Meal;
+use AppBundle\Form\PlaceType;
+use AppBundle\Entity\OrderGroup;
+use AppBundle\Form\MealType;
+use AppBundle\Form\OrderGroupType;
 
 /**
  * Place controller.
@@ -115,13 +120,18 @@ class PlaceController extends Controller
      * @Route("/{place}", name="place_show")
      * @Method({"GET", "POST"})
      */
-    public function showAction(Place $place)
+    public function showAction(Request $request, Place $place)
     {
         $delete_form = $this->createDeleteForm($place);
 
+        $orderGroup = new OrderGroup();
+        $formOrder = $this->createForm(OrderGroupType::class, $orderGroup);
+        $formOrder->handleRequest($request);
+
         return $this->render('place/show.html.twig', array(
             'place' => $place,
-            'delete_form' => $delete_form->createView()
+            'delete_form' => $delete_form->createView(),
+            'formOrderGroup'  => $formOrder->createView()
         ));
     }
 

@@ -43,6 +43,11 @@ class Meal extends EntityInfos
     }
 
     /**
+     * @ORM\OneToMany(targetEntity="OrderMeal", mappedBy="meal")
+     */
+    private $orderMeals;
+
+    /**
      * Get id
      *
      * @return int
