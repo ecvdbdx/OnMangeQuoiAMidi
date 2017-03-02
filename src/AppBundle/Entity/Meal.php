@@ -51,7 +51,7 @@ class Meal
      *
      * @param string $name
      *
-     * @return Place
+     * @return Meal
      */
     public function setName($name)
     {
@@ -70,11 +70,23 @@ class Meal
         return $this->name;
     }
 
+    /**
+     * Get place
+     *
+     * @return string
+     */
     public function getPlace()
     {
         return $this->place;
     }
 
+    /**
+     * Get place
+     *
+     * @param string $place
+     *
+     * @return Meal
+     */
     public function setPlace($place)
     {
         $this->place = $place;
