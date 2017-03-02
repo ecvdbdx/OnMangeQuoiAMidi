@@ -39,7 +39,8 @@ class Menu
     private $price;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Meal", mappedBy="menus")
+     * @ORM\ManyToMany(targetEntity="Meal")
+     * @ORM\JoinColumn(name="meal_id", referencedColumnName="id")
      */
     private $meals;
 
@@ -53,7 +54,6 @@ class Menu
     {
         $this->meals = new ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -113,11 +113,23 @@ class Menu
         return $this->price;
     }
 
+    /**
+     * Get place
+     *
+     * @return string
+     */
     public function getPlace()
     {
         return $this->place;
     }
 
+    /**
+     * Set place
+     *
+     * @param string $place
+     *
+     * @return Menu
+     */
     public function setPlace($place)
     {
         $this->place = $place;
@@ -125,17 +137,31 @@ class Menu
         return $this;
     }
 
+    /**
+     * Get meals
+     *
+     * @return ArrayCollection
+     */
     public function getMeals()
     {
         return $this->meals;
     }
 
+    /**
+     * Add meal
+     *
+     * @param Meal $meal
+     */
     public function addMeal(Meal $meal)
     {
-        $meal->setPlace($this);
         $this->meals->add($meal);
     }
 
+    /**
+     * Remove meal
+     *
+     * @param Meal $meal
+     */
     public function removeMeal(Meal $meal)
     {
         $this->meals->removeElement($meal);

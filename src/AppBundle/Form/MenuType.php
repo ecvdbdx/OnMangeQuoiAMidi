@@ -15,18 +15,19 @@ class MenuType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $menu = $builder->getData();
         $builder
             ->add('name')
             ->add('price')
             ->add('meals', EntityType::class, array(
-                'class' => 'AppBundle\Entity\Meal',
+                'class' => 'AppBundle:Meal',
+                'choices' => $menu->getPlace()->getMeals(),
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true
-              ))
-        ;
+            ));
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
