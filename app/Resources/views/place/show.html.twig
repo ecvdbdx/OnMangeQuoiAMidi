@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="row row-right">
+        <a href="{{ path('place_index') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-th-list"></i> Back to the list
+        </a>
+    </div>
+
     <h1>Place</h1>
 
     <table class="table table-striped">
@@ -58,8 +64,14 @@
             <td>
                 <ul>
                     {% for meal in place.meals %}
-                        <li>{{ meal.name }}<a href="{{ path('meal_delete', { 'id': meal.id }) }}"><span
-                                        class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></li>
+                        <li>
+                            {{ meal.name }}
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <a href="{{ path('meal_delete', { 'id': meal.id }) }}">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+                            {% endif %}
+                        </li>
                     {% endfor %}
                 </ul>
             </td>
@@ -84,32 +96,23 @@
         </tbody>
     </table>
 
-    <h3>Add a Meal</h3>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-primary">
+            <i class="glyphicon glyphicon-edit"></i> Edit
+        </a>
 
-    {{ form_start(add_meal_form) }}
-    {{ form_widget(add_meal_form) }}
+        <a href="{{ path('place_meal_new', { 'id': place.id }) }}" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus-sign"></i> New Meal
+        </a>
 
-    <input type="submit" value="Add" class="btn btn-primary"/>
+        <a href="{{ path('place_menu_new', { 'id': place.id }) }}" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus-sign"></i> New Menu
+        </a>
+    {% endif %}
 
-    {{ form_end(add_meal_form) }}
-
-    <h3>Add a Menu</h3>
-
-    {{ form_start(add_menu_form) }}
-    {{ form_widget(add_menu_form) }}
-
-    <input type="submit" value="Add" class="btn btn-primary"/>
-
-    {{ form_end(add_menu_form) }}
-
-    <br>
-
-    <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-primary"><i
-                class="glyphicon glyphicon-edit"></i> Edit</a>
-    <a href="{{ path('place_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Back to the
-        list</a>
-
-    {{ form_start(delete_form) }}
-    <input type="submit" value="Delete" class="btn btn-danger">
-    {{ form_end(delete_form) }}
+    {% if is_granted("ROLE_ADMIN") %}
+        {{ form_start(delete_form) }}
+        <input type="submit" value="Delete" class="btn btn-danger">
+        {{ form_end(delete_form) }}
+    {% endif %}
 {% endblock %}
