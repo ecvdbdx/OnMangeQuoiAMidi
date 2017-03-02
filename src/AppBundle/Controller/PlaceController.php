@@ -7,10 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Place;
-use AppBundle\Entity\Meal;
-use AppBundle\Entity\Menu;
-use AppBundle\Form\MealType;
-use AppBundle\Form\MenuType;
 use Ivory\GoogleMap\Map;
 use Ivory\GoogleMap\Overlay\Marker;
 use Ivory\GoogleMap\Base\Coordinate;
@@ -115,158 +111,65 @@ class PlaceController extends Controller
     }
 
     /**
-     * Creates a new Place entity.
-     *
-     * @Route("/{id}/meals/new", name="place_meal_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newMealAction(Request $request, Place $place)
-    {
-        $meal = new Meal();
-        $meal->setPlace($place);
-
-        $form = $this->createForm(MealType::class, $meal);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($meal);
-            $em->flush();
-
-            return $this->redirectToRoute('place_show', array('id' => $place->getId()));
-        }
-
-        return $this->render('meal/new.html.twig', array(
-            'meal' => $meal,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Creates a new Place entity.
-     *
-     * @Route("/{id}/menus/new", name="place_menu_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newMenuAction(Request $request, Place $place)
-    {
-        $menu = new Menu();
-        $menu->setPlace($place);
-
-        $form = $this->createForm(MenuType::class, $menu);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($menu);
-            $em->flush();
-
-            return $this->redirectToRoute('place_show', array('id' => $place->getId()));
-        }
-
-        return $this->render('menu/new.html.twig', array(
-            'menu' => $menu,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
      * Finds and displays a Place entity.
      *
-     * @Route("/{id}", name="place_show")
+     * @Route("/{place}", name="place_show")
      * @Method({"GET", "POST"})
      */
     public function showAction(Place $place)
     {
-        $deleteForm = $this->createDeleteForm($place);
-
         return $this->render('place/show.html.twig', array(
-            'place' => $place,
-            'delete_form' => $deleteForm->createView()
+            'place' => $place
         ));
     }
 
     /**
      * Displays a form to edit an existing Place entity.
      *
-     * @Route("/{id}/edit", name="place_edit")
+     * @Route("/{place}/edit", name="place_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Place $place)
     {
-        $deleteForm = $this->createDeleteForm($place);
-
         $editForm = $this->createForm('AppBundle\Form\PlaceType', $place);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($place);
             $em->flush();
 
-            return $this->redirectToRoute('place_edit', array('id' => $place->getId()));
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success', 'Place saved to database.');
+
+            return $this->redirectToRoute('place_edit', array('place' => $place->getId()));
         }
 
         return $this->render('place/edit.html.twig', array(
             'place' => $place,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
      * Deletes a Place entity.
      *
-     * @Route("/{id}", name="place_delete")
+     * @Route("/{place}", name="place_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Place $place)
     {
-        $form = $this->createDeleteForm($place);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($place);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('place_index');
-    }
-
-    /**
-     * Deletes a Meal entity.
-     *
-     * @Route("/mealdelete/{id}", name="meal_delete")
-     */
-    public function deleteMealAction(Request $request, Meal $meal)
-    {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Meal')->find($meal);
-
-        $idPlace = $entity->getPlace()->getId();
-
-        $em->remove($entity);
+        $em->remove($place);
         $em->flush();
 
-        return $this->redirectToRoute('place_show', array('id' => $idPlace));
-    }
+        $request->getSession()
+            ->getFlashBag()
+            ->add('success', 'Place removed from database.');
 
-    /**
-     * Creates a form to delete a Place entity.
-     *
-     * @param Place $place The Place entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Place $place)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('place_delete', array('id' => $place->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
+        return $this->redirectToRoute('place_index');
     }
 }

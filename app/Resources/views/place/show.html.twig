@@ -67,7 +67,7 @@
                         <li>
                             {{ meal.name }}
                             {% if is_granted("ROLE_ADMIN") %}
-                                <a href="{{ path('meal_delete', { 'id': meal.id }) }}">
+                                <a href="{{ path('meal_delete', { 'place': place.id, 'meal': meal.id }) }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 </a>
                             {% endif %}
@@ -83,6 +83,11 @@
                     {% for menu in place.menus %}
                         <li>
                             {{ menu.name }}
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <a href="{{ path('menu_delete', { 'place': place.id, 'menu': menu.id }) }}">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+                            {% endif %}
                             <ul>
                                 {% for meal in menu.meals %}
                                     <li>{{ meal.name }}</li>
@@ -97,22 +102,18 @@
     </table>
 
     {% if is_granted("ROLE_ADMIN") %}
-        <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-primary">
+        <a href="{{ path('place_edit', { 'place': place.id }) }}" class="btn btn-primary">
             <i class="glyphicon glyphicon-edit"></i> Edit
         </a>
 
-        <a href="{{ path('place_meal_new', { 'id': place.id }) }}" class="btn btn-primary">
+        <a href="{{ path('place_meal_new', { 'place': place.id }) }}" class="btn btn-primary">
             <i class="glyphicon glyphicon-plus-sign"></i> New Meal
         </a>
 
-        <a href="{{ path('place_menu_new', { 'id': place.id }) }}" class="btn btn-primary">
+        <a href="{{ path('place_menu_new', { 'place': place.id }) }}" class="btn btn-primary">
             <i class="glyphicon glyphicon-plus-sign"></i> New Menu
         </a>
-    {% endif %}
 
-    {% if is_granted("ROLE_ADMIN") %}
-        {{ form_start(delete_form) }}
-        <input type="submit" value="Delete" class="btn btn-danger">
-        {{ form_end(delete_form) }}
+        <a href="{{ path('place_delete', { 'place': place.id }) }}" class="btn btn-danger">Delete</a>
     {% endif %}
 {% endblock %}
