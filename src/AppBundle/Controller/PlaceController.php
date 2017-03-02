@@ -54,6 +54,10 @@ class PlaceController extends Controller
 
             $em->flush();
 
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success', 'New place saved in database.');
+
             return $this->redirectToRoute('place_show', array('id' => $place->getId()));
         }
 
