@@ -65,16 +65,16 @@ class Place
     private $country;
 
     /**
-     * @var decimal
+     * @var float
      *
-     * @ORM\Column(name="longitude", type="decimal")
+     * @ORM\Column(name="longitude", type="float")
      */
     private $longitude;
 
     /**
-     * @var decimal
+     * @var float
      *
-     * @ORM\Column(name="latitude", type="decimal")
+     * @ORM\Column(name="latitude", type="float")
      */
     private $latitude;
 
