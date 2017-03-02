@@ -177,6 +177,8 @@ class Place
     public function setCity($city)
     {
         $this->city = $city;
+
+        return $this;
     }
 
     /**
@@ -193,6 +195,8 @@ class Place
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
     }
 
     /**
@@ -209,6 +213,8 @@ class Place
     public function setStreet($street)
     {
         $this->street = $street;
+
+        return $this;
     }
 
     /**
@@ -225,6 +231,8 @@ class Place
     public function setZipCode($zip_code)
     {
         $this->zip_code = $zip_code;
+
+        return $this;
     }
 
     /**
@@ -241,6 +249,8 @@ class Place
     public function setCountry($country)
     {
         $this->country = $country;
+
+        return $this;
     }
 
     /**
@@ -257,6 +267,8 @@ class Place
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
+
+        return $this;
     }
 
     /**
@@ -273,6 +285,8 @@ class Place
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
+
+        return $this;
     }
 
     /**
@@ -289,6 +303,8 @@ class Place
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
+        return $this;
     }
 
     /**
@@ -305,6 +321,8 @@ class Place
     public function setMobile($mobile)
     {
         $this->mobile = $mobile;
+
+        return $this;
     }
 
     /**
@@ -321,6 +339,8 @@ class Place
     public function setEmail($email)
     {
         $this->email = $email;
+
+        return $this;
     }
 
     /**
@@ -337,6 +357,8 @@ class Place
     public function setWebsite($website)
     {
         $this->website = $website;
+
+        return $this;
     }
 
     /**
@@ -353,6 +375,8 @@ class Place
     public function setFacebook($facebook)
     {
         $this->facebook = $facebook;
+
+        return $this;
     }
 
     public function getMeals()
