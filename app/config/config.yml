@@ -77,8 +77,8 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-        address: noreply@omq.am
-        sender_name: "On manque quoi à midi ?"
+            address: noreply@omq.am
+            sender_name: "On manque quoi à midi ?"
 
 knp_paginator:
     page_range: 8                      # default page range used in pagination control

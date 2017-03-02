@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\Meal;
 use AppBundle\Entity\Menu;
-use AppBundle\Form\PlaceType;
 use AppBundle\Form\MealType;
 use AppBundle\Form\MenuType;
 use AppBundle\Repository\PlaceRepository;
@@ -38,7 +37,7 @@ class PlaceController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         $places = $em->getRepository('AppBundle:Place')->findAll();
 
         $paginator = $this->get('knp_paginator');
