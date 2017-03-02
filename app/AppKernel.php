@@ -18,12 +18,12 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new Bazinga\Bundle\FakerBundle\BazingaFakerBundle(),
-
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
 
             // Optionally
             new Ivory\SerializerBundle\IvorySerializerBundle(),
-            new Http\HttplugBundle\HttplugBundle()
+            new Http\HttplugBundle\HttplugBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

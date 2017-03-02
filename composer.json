@@ -44,7 +44,8 @@
         "egeloen/google-map-bundle": "^3.0",
         "egeloen/serializer-bundle": "^1.0",
         "php-http/httplug-bundle": "^1.4",
-        "php-http/guzzle6-adapter": "^1.1"
+        "php-http/guzzle6-adapter": "^1.1",
+        "knplabs/knp-paginator-bundle": "^2.5"
 
     },
     "require-dev": {
