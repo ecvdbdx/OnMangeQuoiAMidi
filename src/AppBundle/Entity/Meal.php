@@ -37,12 +37,6 @@ class Meal
      */
     private $place;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Menu", inversedBy="meals")
-     * @ORM\JoinTable(name="menus_meals")
-     */
-    private $menus;
-
     public function __construct()
     {
         $this->menus = new ArrayCollection();
