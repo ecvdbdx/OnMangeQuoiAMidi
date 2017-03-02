@@ -3,32 +3,34 @@
 {% block body %}
     <h1>Place list</h1>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for place in places %}
-            <tr>
-                <td><a href="{{ path('place_show', { 'id': place.id }) }}">{{ place.id }}</a></td>
-                <td>{{ place.name }}</td>
-                <td>{{ place.description }}</td>
-                <td>
-                    <a class="btn btn-info" href="{{ path('place_show', { 'id': place.id }) }}" role="button"><i
-                                class="glyphicon glyphicon-info-sign"></i> Show</a>
-                    <a class="btn btn-default" href="{{ path('place_edit', { 'id': place.id }) }}" role="button"><i
-                                class="glyphicon glyphicon-edit"></i> Edit</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container-fluid">
+        <div class="row">
+            {% for place in pagination %}
+                <div class="col-sm-6 col-md-6">
+                    <div class="thumbnail">
+                        <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt={{ place.name }}&w=500&h=200"
+                             alt="...">
+                        <div class="caption">
+                            <h3><a href="{{ path('place_show', { 'id': place.id }) }}"
+                                   role="button">{{ place.name }}</a></h3>
+                            <p>{{ place.description }}</p>
+                            <p>
+                                <a href="{{ path('place_show', { 'id': place.id }) }}" class="btn btn-primary"
+                                   role="button">Show</a>
+                                <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-default"
+                                   role="button">Edit</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row row-centered">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
 
-    <a href="{{ path('place_new') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Create a new
+    <a href="{{ path('place_new') }}" class="btn btn-primary btn-lg btn-block"><i
+                class="glyphicon glyphicon-plus-sign"></i> Create a new
         entry</a>
 {% endblock %}
