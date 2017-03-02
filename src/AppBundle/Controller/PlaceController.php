@@ -12,6 +12,7 @@ use AppBundle\Entity\Menu;
 use AppBundle\Form\PlaceType;
 use AppBundle\Form\MealType;
 use AppBundle\Form\MenuType;
+use AppBundle\Repository\PlaceRepository;
 use Ivory\GoogleMap\Map;
 use Ivory\GoogleMap\Overlay\Marker;
 use Ivory\GoogleMap\Base\Coordinate;
@@ -34,12 +35,18 @@ class PlaceController extends Controller
      * @Route("/", name="place_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        // On récupère les places
         $em = $this->getDoctrine()->getManager();
         
         $places = $em->getRepository('AppBundle:Place')->findAll();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $places,
+            $request->query->getInt('page', 1),
+            4
+        );
 
         $map = new Map();
 
@@ -72,7 +79,7 @@ class PlaceController extends Controller
         $response = $geocoder->geocode($request);*/
 
         return $this->render('place/index.html.twig', array(
-            'places' => $places,
+            'pagination' => $pagination,
             'map' => $map
         ));
     }
