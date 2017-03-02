@@ -123,10 +123,16 @@ class Place extends EntityInfos
      */
     private $menus;
 
+    /**
+     * @ORM\OneToMany(targetEntity="OrderGroup", mappedBy="place")
+     */
+    private $orderGroups;
+
     public function __construct()
     {
         $this->menus = new ArrayCollection();
         $this->meals = new ArrayCollection();
+        $this->orderGroups = new ArrayCollection();
     }
 
     /**

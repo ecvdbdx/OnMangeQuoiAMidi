@@ -118,4 +118,12 @@
         <input value="Delete" type="submit" class="btn btn-danger">
         {{ form_end(delete_form) }}
     {% endif %}
+
+    <br>
+    {{ form_start(formOrderGroup) }}
+        {{ form_widget(formOrderGroup) }}
+        <input type="submit" class="btn btn-primary btn-test" value="Generate token bitch"/>
+        <input type="hidden" value="{{ place.id }}" name="place">
+    {{ form_end(formOrderGroup) }}
+    <a href="{{ path('place_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Back to the list</a>
 {% endblock %}

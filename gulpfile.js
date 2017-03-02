@@ -11,8 +11,8 @@ var fontPaths = [
 
 var jsFiles = [
     './node_modules/jquery/dist/jquery.js',
-    './node_modules/foundation-sites/dist/foundation.js',
-    './src/AppBundle/Resources/public/js/app.js'
+    './node_modules/bootstrap-sass/assets/javascript/bootstrap.js',
+    './src/AppBundle/Resources/public/js/main.js'
 ];
 
 gulp.task('sass', function () {
@@ -42,5 +42,5 @@ gulp.task('fonts', function() {
 
 gulp.task('default', ['sass', 'js', 'fonts'], function () {
     gulp.watch(['src/AppBundle/Resources/public/scss/**/*.scss'], ['sass']);
-    gulp.watch(['src/AppBundle/Resources/public/js/app.js'], ['js']);
+    gulp.watch(['src/AppBundle/Resources/public/js/main.js'], ['js']);
 });

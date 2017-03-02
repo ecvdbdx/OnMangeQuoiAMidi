@@ -48,6 +48,11 @@ class Menu extends EntityInfos
      */
     private $place;
 
+    /**
+     * @ORM\OneToMany(targetEntity="OrderMenu", mappedBy="menu")
+     */
+    private $orderMenus;
+
     public function __construct()
     {
         $this->meals = new ArrayCollection();
