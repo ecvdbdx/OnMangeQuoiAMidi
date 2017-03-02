@@ -20,8 +20,10 @@
                             <p>
                                 <a href="{{ path('place_show', { 'id': place.id }) }}" class="btn btn-primary"
                                    role="button">Show</a>
-                                <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-default"
-                                   role="button">Edit</a>
+                                {% if is_granted("ROLE_ADMIN") %}
+                                    <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-default"
+                                       role="button">Edit</a>
+                                {% endif %}
                             </p>
                         </div>
                     </div>

@@ -11,7 +11,6 @@ use AppBundle\Entity\Meal;
 use AppBundle\Entity\Menu;
 use AppBundle\Form\MealType;
 use AppBundle\Form\MenuType;
-use AppBundle\Repository\PlaceRepository;
 use Ivory\GoogleMap\Map;
 use Ivory\GoogleMap\Overlay\Marker;
 use Ivory\GoogleMap\Base\Coordinate;
@@ -116,21 +115,20 @@ class PlaceController extends Controller
     }
 
     /**
-     * Finds and displays a Place entity.
+     * Creates a new Place entity.
      *
-     * @Route("/{id}", name="place_show")
+     * @Route("/{id}/meals/new", name="place_meal_new")
      * @Method({"GET", "POST"})
      */
-    public function showAction(Request $request, Place $place)
+    public function newMealAction(Request $request, Place $place)
     {
-        $deleteForm = $this->createDeleteForm($place);
-
         $meal = new Meal();
         $meal->setPlace($place);
-        $addMealForm = $this->createForm(MealType::class, $meal);
-        $addMealForm->handleRequest($request);
 
-        if ($addMealForm->isSubmitted() && $addMealForm->isValid()) {
+        $form = $this->createForm(MealType::class, $meal);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($meal);
@@ -139,13 +137,27 @@ class PlaceController extends Controller
             return $this->redirectToRoute('place_show', array('id' => $place->getId()));
         }
 
+        return $this->render('meal/new.html.twig', array(
+            'meal' => $meal,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Creates a new Place entity.
+     *
+     * @Route("/{id}/menus/new", name="place_menu_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newMenuAction(Request $request, Place $place)
+    {
         $menu = new Menu();
         $menu->setPlace($place);
-        $addMenuForm = $this->createForm(MenuType::class, $menu);
-        $addMenuForm->handleRequest($request);
 
-        // TODO: ADD THE MEALS TO THE MENU ENTITY
-        if ($addMenuForm->isSubmitted() && $addMenuForm->isValid()) {
+        $form = $this->createForm(MenuType::class, $menu);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($menu);
@@ -154,11 +166,25 @@ class PlaceController extends Controller
             return $this->redirectToRoute('place_show', array('id' => $place->getId()));
         }
 
+        return $this->render('menu/new.html.twig', array(
+            'menu' => $menu,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Finds and displays a Place entity.
+     *
+     * @Route("/{id}", name="place_show")
+     * @Method({"GET", "POST"})
+     */
+    public function showAction(Place $place)
+    {
+        $deleteForm = $this->createDeleteForm($place);
+
         return $this->render('place/show.html.twig', array(
             'place' => $place,
-            'delete_form' => $deleteForm->createView(),
-            'add_meal_form' => $addMealForm->createView(),
-            'add_menu_form' => $addMenuForm->createView()
+            'delete_form' => $deleteForm->createView()
         ));
     }
 
