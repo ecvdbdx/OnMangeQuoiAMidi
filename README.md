@@ -36,6 +36,48 @@ ECV PHP Project - Symfony3 (Docker)
     
 # Development
 
+## Populating & resetting the database
+
+### Reset database
+
+`docker exec -it symfony_php php bin/console doctrine:schema:drop --force`
+`docker exec -it symfony_php php bin/console doctrine:schema:create`
+
+### Generate fixtures
+
+Fake datas (fixtures) generated with the [Bazinga Faker Bundle](https://github.com/willdurand/BazingaFakerBundle/)
+
+In order to add fixtures into the database to work with, follow these steps :
+
+1 - make sure to have the last database schema :
+
+`docker exec -it symfony_php php bin/console doctrine:schema:update --force`
+
+2 - Execute the Bazinga Faker command to populate the database
+
+`docker exec -it symfony_php php bin/console faker:populate`
+
+> NB : Entries are INSERTED into database, your previous entries won't be erased
+
+### Add fixtures
+
+Fixtures are declared in `app/config/config_dev.yml` under the bazinga_faker entry.
+We first declare the ORM used and the location (locale) to get the datas in the correct language.
+The fixtures are then inserted based on entities.
+
+Example for place entity :
+
+``` yml
+AppBundle\Entity\Place:
+            number: 50 # Choose the number of entries to generate
+            custom_formatters:
+                name: { method: company }
+                description: { method: realText }
+                ... # Make sure to add one new based on your entity entry
+``` 
+
+[See all available methods](https://github.com/fzaninotto/Faker#formatters)
+
 ## Front-End
     
 If you need to develop on the front-end:
