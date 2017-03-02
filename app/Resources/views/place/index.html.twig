@@ -3,6 +3,9 @@
 {% block body %}
     <h1>Place list</h1>
 
+    {{ ivory_google_map(map) }}
+    {{ ivory_google_api([map]) }}
+
     <table class="table table-striped">
         <thead>
         <tr>

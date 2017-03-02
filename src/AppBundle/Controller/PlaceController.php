@@ -12,6 +12,14 @@ use AppBundle\Entity\Menu;
 use AppBundle\Form\PlaceType;
 use AppBundle\Form\MealType;
 use AppBundle\Form\MenuType;
+use Ivory\GoogleMap\Map;
+use Ivory\GoogleMap\Overlay\Marker;
+use Ivory\GoogleMap\Base\Coordinate;
+use Ivory\GoogleMap\Service\Geocoder\GeocoderService;
+use Ivory\GoogleMap\Service\Serializer\SerializerBuilder;
+use Http\Adapter\Guzzle6\Client;
+use Http\Message\MessageFactory\GuzzleMessageFactory;
+use Ivory\GoogleMap\Service\Geocoder\Request\GeocoderAddressRequest;
 
 /**
  * Place controller.
@@ -28,12 +36,44 @@ class PlaceController extends Controller
      */
     public function indexAction()
     {
+        // On récupère les places
         $em = $this->getDoctrine()->getManager();
-
+        
         $places = $em->getRepository('AppBundle:Place')->findAll();
+
+        $map = new Map();
+
+        // Disable the auto zoom flag (disabled by default)
+        $map->setAutoZoom(false);
+
+        // Sets the center
+        $map->setCenter(new Coordinate(44.841767, -0.574961));
+
+        // Sets the zoom
+        $map->setMapOption('zoom', 16);
+
+        foreach ($places as $place) {
+            $map->getOverlayManager()->addMarker(new Marker(new Coordinate($place->getLatitude(), $place->getLongitude())));
+        }
+
+
+
+        /***********************************************
+         ************ Get address informations *********
+         **********************************************/
+
+        /*$geocoder = new GeocoderService(
+            new Client(),
+            new GuzzleMessageFactory(),
+            SerializerBuilder::create()
+        );
+
+        $request = new GeocoderAddressRequest('4 - 6 Cours de l\'Intendance, Hôtel Pichon, 33000 Bordeaux');
+        $response = $geocoder->geocode($request);*/
 
         return $this->render('place/index.html.twig', array(
             'places' => $places,
+            'map' => $map
         ));
     }
 

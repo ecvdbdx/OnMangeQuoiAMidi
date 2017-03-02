@@ -17,7 +17,13 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
-            new Bazinga\Bundle\FakerBundle\BazingaFakerBundle()
+            new Bazinga\Bundle\FakerBundle\BazingaFakerBundle(),
+
+            new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
+
+            // Optionally
+            new Ivory\SerializerBundle\IvorySerializerBundle(),
+            new Http\HttplugBundle\HttplugBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
