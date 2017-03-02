@@ -40,7 +40,8 @@
         "snc/redis-bundle": "2.x-dev",
         "predis/predis": "^1.0",
         "willdurand/faker-bundle": "^1.3",
-        "friendsofsymfony/user-bundle": "~2.0@dev"
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "knplabs/knp-paginator-bundle": "^2.5"
 
     },
     "require-dev": {
