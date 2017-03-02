@@ -47,6 +47,8 @@ bazinga_faker:
                 street: { method: streetAddress }
                 zip_code: { method: postcode }
                 country: { method: country }
+                latitude: { method: latitude, parameters: [ 44.7, 44.9 ]}
+                longitude: { method: longitude, parameters: [ -0.6, -0.48 ]}
                 phone: { method: phoneNumber }
                 mobile: { method: mobileNumber }
                 email: { method: safeEmail }
@@ -56,3 +58,8 @@ bazinga_faker:
             number: 100
             custom_formatters:
                 name: { method: company }
+
+ivory_google_map:
+    map:
+        debug: "%kernel.debug%"
+        language: "%locale%"
