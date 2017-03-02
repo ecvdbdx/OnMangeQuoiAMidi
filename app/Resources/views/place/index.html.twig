@@ -14,14 +14,14 @@
                         <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt={{ place.name }}&w=500&h=200"
                              alt="...">
                         <div class="caption">
-                            <h3><a href="{{ path('place_show', { 'id': place.id }) }}"
+                            <h3><a href="{{ path('place_show', { 'place': place.id }) }}"
                                    role="button">{{ place.name }}</a></h3>
                             <p>{{ place.description }}</p>
                             <p>
-                                <a href="{{ path('place_show', { 'id': place.id }) }}" class="btn btn-primary"
+                                <a href="{{ path('place_show', { 'place': place.id }) }}" class="btn btn-primary"
                                    role="button">Show</a>
                                 {% if is_granted("ROLE_ADMIN") %}
-                                    <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-default"
+                                    <a href="{{ path('place_edit', { 'place': place.id }) }}" class="btn btn-default"
                                        role="button">Edit</a>
                                 {% endif %}
                             </p>

@@ -7,7 +7,7 @@
     {{ form_widget(form) }}
 
     <input type="submit" value="Create" class="btn btn-primary"/>
-    <a href="{{ path('place_show', {'id': menu.place.id}) }}" class="btn btn-default">Back to the place</a>
+    <a href="{{ path('place_show', {'place': menu.place.id}) }}" class="btn btn-default">Back to the place</a>
 
     {{ form_end(form) }}
 {% endblock %}
