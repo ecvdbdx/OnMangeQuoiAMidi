@@ -35,7 +35,9 @@
         </div>
     </div>
 
-    <a href="{{ path('place_new') }}" class="btn btn-primary btn-lg btn-block"><i
-                class="glyphicon glyphicon-plus-sign"></i> Create a new
-        entry</a>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('place_new') }}" class="btn btn-primary btn-lg btn-block">
+            <i class="glyphicon glyphicon-plus-sign"></i> Create a new entry
+        </a>
+    {% endif %}
 {% endblock %}
