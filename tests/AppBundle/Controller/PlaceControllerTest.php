@@ -16,12 +16,12 @@ class PlaceControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testPlaceNew()
+    public function testPlaceNewWithoutBeingAuthenticated()
     {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/place/new');
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
 }
