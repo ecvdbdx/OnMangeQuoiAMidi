@@ -5,8 +5,9 @@
 
     {{ form_start(edit_form) }}
     {{ form_widget(edit_form) }}
-    <input type="submit" value="Edit" class="btn btn-primary"/>
-    <a href="{{ path('place_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Back to the
-        list</a>
+    <input type="submit" value="Save" class="btn btn-primary"/>
+    <a href="{{ path('place_show', {'place': place.id}) }}" class="btn btn-default">
+        <i class="glyphicon glyphicon-th-list"></i> Back to the place
+    </a>
     {{ form_end(edit_form) }}
 {% endblock %}

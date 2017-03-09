@@ -58,7 +58,6 @@ class PlaceController extends Controller
         }
 
 
-
         /***********************************************
          ************ Get address informations *********
          **********************************************/
@@ -144,7 +143,7 @@ class PlaceController extends Controller
                 ->getFlashBag()
                 ->add('success', 'Place saved to database.');
 
-            return $this->redirectToRoute('place_edit', array('place' => $place->getId()));
+            return $this->redirectToRoute('place_show', array('place' => $place->getId()));
         }
 
         return $this->render('place/edit.html.twig', array(
