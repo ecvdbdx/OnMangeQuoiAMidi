@@ -105,7 +105,7 @@ class PlaceController extends Controller
 
         return $this->render('place/new.html.twig', array(
             'place' => $place,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ));
     }
 
@@ -117,8 +117,11 @@ class PlaceController extends Controller
      */
     public function showAction(Place $place)
     {
+        $delete_form = $this->createDeleteForm($place);
+
         return $this->render('place/show.html.twig', array(
-            'place' => $place
+            'place' => $place,
+            'delete_form' => $delete_form->createView()
         ));
     }
 
@@ -160,15 +163,36 @@ class PlaceController extends Controller
      */
     public function deleteAction(Request $request, Place $place)
     {
-        $em = $this->getDoctrine()->getManager();
+        $form = $this->createDeleteForm($place);
+        $form->handleRequest($request);
 
-        $em->remove($place);
-        $em->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        $request->getSession()
-            ->getFlashBag()
-            ->add('success', 'Place removed from database.');
+            $em = $this->getDoctrine()->getManager();
+
+            $em->remove($place);
+            $em->flush();
+
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success', 'Place removed from database.');
+        }
 
         return $this->redirectToRoute('place_index');
+    }
+
+    /**
+     * Creates a form to delete a Place entity.
+     *
+     * @param Place $place The Place entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Place $place)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('place_delete', array('place' => $place->getId())))
+            ->setMethod('DELETE')
+            ->getForm();
     }
 }
