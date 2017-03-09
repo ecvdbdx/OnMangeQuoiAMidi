@@ -67,14 +67,14 @@ class Place
     /**
      * @var float
      *
-     * @ORM\Column(name="longitude", type="float")
+     * @ORM\Column(name="longitude", type="float", nullable=true)
      */
     private $longitude;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="latitude", type="float")
+     * @ORM\Column(name="latitude", type="float", nullable=true)
      */
     private $latitude;
 
@@ -114,12 +114,12 @@ class Place
     private $facebook;
 
     /**
-     * @ORM\OneToMany(targetEntity="Meal", mappedBy="place")
+     * @ORM\OneToMany(targetEntity="Meal", mappedBy="place", cascade={"remove"})
      */
     private $meals;
 
     /**
-     * @ORM\OneToMany(targetEntity="Menu", mappedBy="place")
+     * @ORM\OneToMany(targetEntity="Menu", mappedBy="place", cascade={"remove"})
      */
     private $menus;
 

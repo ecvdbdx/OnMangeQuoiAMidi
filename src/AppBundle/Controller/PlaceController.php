@@ -100,7 +100,7 @@ class PlaceController extends Controller
                 ->getFlashBag()
                 ->add('success', 'New place saved in database.');
 
-            return $this->redirectToRoute('place_show', array('id' => $place->getId()));
+            return $this->redirectToRoute('place_show', array('place' => $place->getId()));
         }
 
         return $this->render('place/new.html.twig', array(
