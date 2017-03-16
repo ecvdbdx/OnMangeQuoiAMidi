@@ -17,12 +17,13 @@ class updateModifierUser
     {
         $entity = $args->getEntity();
 
-        if (!$entity instanceof Place) {
+        if (!$entity instanceof EntityInfos) {
             return;
         }
 
         $entityManager = $args->getEntityManager();
-        $id = $this->token->getUser()->getId();
+        $id = $this->token->getToken()->getUser()->getId();
+        
         $entity->setModifierUserId($id);
     }
 }
