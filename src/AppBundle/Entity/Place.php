@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use AppBundle\Entity\EntityInfos as EntityInfos;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

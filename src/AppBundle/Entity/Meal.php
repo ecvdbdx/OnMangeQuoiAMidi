@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="meal")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MealRepository")
  */
-class Meal
+class Meal extends EntityInfos
 {
     /**
      * @var int

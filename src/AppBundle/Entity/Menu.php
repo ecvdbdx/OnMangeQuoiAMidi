@@ -4,8 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\Meal;
-use AppBundle\Entity\Place;
 
 /**
  * Menu
@@ -13,7 +11,7 @@ use AppBundle\Entity\Place;
  * @ORM\Table(name="menu")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MenuRepository")
  */
-class Menu
+class Menu extends EntityInfos
 {
     /**
      * @var int
