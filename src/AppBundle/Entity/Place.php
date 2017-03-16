@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\EntityInfos as EntityInfos;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="place")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PlaceRepository")
  */
-class Place
+class Place extends EntityInfos
 {
     /**
      * @var int
