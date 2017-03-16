@@ -26,6 +26,8 @@ class AdminController extends Controller
         $stats['number_of_places'] = $em->getRepository('AppBundle:Place')->getNumberOfPlaces();
         $stats['number_of_menus'] = $em->getRepository('AppBundle:Menu')->getNumberOfMenus();
         $stats['number_of_meals'] = $em->getRepository('AppBundle:Meal')->getNumberOfMeals();
+        $stats['latest_created_place'] = $em->getRepository('AppBundle:Place')->getLatestCreatedPlace();
+        $stats['latest_modified_place'] = $em->getRepository('AppBundle:Place')->getLatestModifiedPlace();
 
         //
         $orders_by_day = array(

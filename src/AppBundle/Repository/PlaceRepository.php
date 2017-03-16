@@ -16,6 +16,23 @@ class PlaceRepository extends \Doctrine\ORM\EntityRepository
             ->select('COUNT(p)')
             ->getQuery()
             ->getSingleScalarResult();
+    }
 
+    public function getLatestCreatedPlace()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.created_at', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function getLatestModifiedPlace()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.modified_at', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }
