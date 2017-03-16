@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,61 +8,69 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet"
-          href="{{ asset('bundles/app/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/style.css') }}">
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
 
-        <div class="container">
-            {% block menu %}
-            <div class="header clearfix">
-                <nav>
-                    <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class="{% if app.request.get('_route') == 'homepage' %}active{% endif %}"><a href="{{ path('homepage') }}">Accueil</a></li>
-                        <li role="presentation" class="{% if app.request.get('_route') == 'about' %}active{% endif %}"><a href="{{ path('about') }}">À propos</a></li>
-                        <li role="presentation" class="{% if app.request.get('_route') == 'fos_user_security_login' %}active{% endif %}">
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                                <a href="{{ path('fos_user_security_logout') }}">
-                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                </a>
-                            {% else %}
-                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                            {% endif %}
+<div class="container">
+    {% block menu %}
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="{% if app.request.get('_route') == 'homepage' %}active{% endif %}"><a
+                                href="{{ path('homepage') }}">Accueil</a></li>
+                    <li role="presentation" class="{% if app.request.get('_route') == 'about' %}active{% endif %}"><a
+                                href="{{ path('about') }}">À propos</a></li>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <li role="presentation"
+                            class="{% if app.request.get('_route') == 'dashboard' %}active{% endif %}"><a
+                                    href="{{ path('dashboard') }}">Dashboard</a>
                         </li>
-                    </ul>
-                </nav>
-                <h3 class="text-muted site-title">On mange quoi à midi&nbsp;?</h3>
+                    {% endif %}
+                    <li role="presentation"
+                        class="{% if app.request.get('_route') == 'fos_user_security_login' %}active{% endif %}">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                            <a href="{{ path('fos_user_security_logout') }}">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted site-title">On mange quoi à midi&nbsp;?</h3>
+        </div>
+    {% endblock %}
+
+    {% for type, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            {% if type == 'error' %} {% set type = 'danger' %} {% endif %}
+            <div class="alert alert-{{ type }}">
+                {{ message|raw }}
             </div>
-            {% endblock %}
+        {% endfor %}
+    {% endfor %}
 
-            {% for type, messages in app.session.flashBag.all %}
-                {% for message in messages %}
-                    {%if type == 'error'%} {% set type = 'danger' %} {%endif%}
-                    <div class="alert alert-{{ type }}">
-                        {{ message|raw }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
-            
-            {% block body %}
+    {% block body %}
 
-            {% endblock %}
+    {% endblock %}
 
-            {% block fos_user_content %}
+    {% block fos_user_content %}
 
-            {% endblock %}
+    {% endblock %}
 
-            {% block footer %}
-            <footer class="footer">
-                <p>&copy; 2016 On Mange Quoi À Midi</p>
-            </footer>
-            {% endblock %}
+    {% block footer %}
+        <footer class="footer">
+            <p>&copy; 2016 On Mange Quoi À Midi</p>
+        </footer>
+    {% endblock %}
 
-        </div> <!-- /container -->
-        {% block javascripts %}{% endblock %}
-        <script src="{{ asset('bundles/app/js/build.js') }}"></script>
-    </body>
+</div> <!-- /container -->
+<script src="{{ asset('bundles/app/js/build.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
 </html>

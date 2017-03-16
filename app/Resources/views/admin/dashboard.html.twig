@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Number of users</div>
+                    <div class="panel-body">
+                        {{ stats.number_of_users }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Number of places</div>
+                    <div class="panel-body">
+                        {{ stats.number_of_places }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Number of orders this week</div>
+                    <div class="panel-body">
+                        <div id="linechart" style="min-width: 100%; height: 300px; margin: 0 auto"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Number of menus</div>
+                    <div class="panel-body">
+                        {{ stats.number_of_menus }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Number of meals</div>
+                    <div class="panel-body">
+                        {{ stats.number_of_meals }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
+    <script type="text/javascript">
+        {{ chart(orders_by_day_chart) }}
+    </script>
+{% endblock %}
