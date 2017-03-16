@@ -58,6 +58,10 @@ bazinga_faker:
             number: 100
             custom_formatters:
                 name: { method: company }
+        AppBundle\Entity\Menu:
+            number: 10
+            custom_formatters:
+                name: { method: company }
 
 ivory_google_map:
     map:

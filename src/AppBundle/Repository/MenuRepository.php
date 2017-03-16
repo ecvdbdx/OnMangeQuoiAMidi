@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class MenuRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getNumberOfMenus()
+    {
+        return $this->createQueryBuilder('m')
+            ->select('COUNT(m)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+    }
 }

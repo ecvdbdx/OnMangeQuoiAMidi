@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Bazinga\Bundle\FakerBundle\BazingaFakerBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
+            new Ob\HighchartsBundle\ObHighchartsBundle(),
 
             // Optionally
             new Ivory\SerializerBundle\IvorySerializerBundle(),

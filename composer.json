@@ -46,7 +46,8 @@
         "php-http/httplug-bundle": "^1.4",
         "php-http/guzzle6-adapter": "^1.1",
         "knplabs/knp-paginator-bundle": "^2.5",
-        "coresphere/console-bundle": "^0.5.0"
+        "coresphere/console-bundle": "^0.5.0",
+        "ob/highcharts-bundle": "^1.5"
 
     },
     "require-dev": {
