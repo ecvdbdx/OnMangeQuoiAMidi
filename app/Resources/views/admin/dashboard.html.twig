@@ -19,14 +19,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Number of orders this week</div>
-                    <div class="panel-body">
-                        <div id="linechart" style="min-width: 100%; height: 300px; margin: 0 auto"></div>
-                    </div>
-                </div>
-            </div>
             <div class="col-sm-6 col-md-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">Number of menus</div>
@@ -40,6 +32,30 @@
                     <div class="panel-heading">Number of meals</div>
                     <div class="panel-body">
                         {{ stats.number_of_meals }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Number of orders this week</div>
+                    <div class="panel-body">
+                        <div id="linechart" style="min-width: 100%; height: 300px; margin: 0 auto"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Latest added place</div>
+                    <div class="panel-body">
+                        {{ stats.latest_created_place.name }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Latest modified place</div>
+                    <div class="panel-body">
+                        {{ stats.latest_modified_place.name }}
                     </div>
                 </div>
             </div>
