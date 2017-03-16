@@ -6,4 +6,9 @@ parameters:
 services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+#        arguments: ["@a
+    placeUpdateListener:
+        class: AppBundle\EventListener\updateModifierUser
+        arguments: ["@security.token_storage"]
+        tags:
+          - { name: doctrine.event_listener, event : preUpdate}
