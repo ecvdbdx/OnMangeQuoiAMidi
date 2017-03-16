@@ -13,7 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class EntityInfos
 {
-
     /**
      * @var datetime
      *
@@ -34,6 +33,7 @@ class EntityInfos
      */
     public function prePersist() {
         $this->created_at = new \DateTime('now');
+        $this->modified_at = $this->created_at;
     }
 
     /**
