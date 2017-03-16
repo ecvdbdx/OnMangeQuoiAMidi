@@ -28,6 +28,19 @@ class EntityInfos
      */
     private $modified_at;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="modifier_user_id", type="integer", length=255)
+     */
+    private $modifier_user_id;
+
+    public function setModifierUserId($id)
+    {
+        $this->modifier_user_id = $id;
+
+        return $this;
+    }
 
     /**
      * @ORM\PrePersist()
@@ -42,5 +55,4 @@ class EntityInfos
     public function preUpdate() {
         $this->modified_at = new \DateTime('now');
     }
-
 }
