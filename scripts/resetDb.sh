@@ -6,3 +6,5 @@ php bin/console doctrine:database:create;
 php bin/console doctrine:schema:update --force; 
 # Populate the data
 php bin/console faker:populate;
+# Create the super admin
+php bin/console fos:user:create admin admin@admin.com admin --super-admin;
