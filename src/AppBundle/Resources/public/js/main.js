@@ -1,10 +1,17 @@
 $(".btn-test").click(function(e){
-    var place_id = $('input[name="place"]').val();
-    var user_id = $('input[name="user_id"]').val();
-    console.log(place_id);
-    $.get("../orderGroup/orderz", {place_id: place_id} , function(data, status){
+    e.preventDefault();
+
+    var placeId = $('input[name="place"]').val();
+    
+    var expirationDateDay = $('select[name="order_group[expirationDate][date][day]"]').val();
+    var expirationDateMonth = $('select[name="order_group[expirationDate][date][month]"]').val();
+    var expirationDateYear = $('select[name="order_group[expirationDate][date][year]"]').val();
+    var expirationDateHour = $('select[name="order_group[expirationDate][time][hour]"]').val();
+    var expirationDateMinute = $('select[name="order_group[expirationDate][time][minute]"]').val();
+
+    var expirationDate = expirationDateYear + '-' + expirationDateMonth + '-' + expirationDateDay + 'T' + expirationDateHour + ':' + expirationDateMinute + ':00';
+    
+    $.get("../orderGroup/orderz", {place_id: placeId, expiration_date: expirationDate} , function(data, status){
         console.log(data)
     });
-    e.preventDefault();
-    console.log('ok');
 });

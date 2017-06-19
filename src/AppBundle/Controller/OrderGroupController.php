@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * OrderGroup controller.
@@ -29,18 +28,22 @@ class OrderGroupController extends Controller
             $orderGroup = new OrderGroup();
 
             $place_id = $request->get('place_id');
+            $expiration_date = $request->get('expiration_date');
+            $formatted_expiration_date = new \DateTime($expiration_date, new \DateTimeZone('Europe/Paris'));
+
             $place = $em->getRepository('AppBundle:Place')->find($place_id);
 
-            $date = new \DateTime();
             $token = uniqid();
+
             $orderGroup->setToken($token);
-            $orderGroup->setExpirationDate($date);
+            $orderGroup->setExpirationDate($formatted_expiration_date);
             $orderGroup->setPlace($place);
             $orderGroup->setUser($user);
-            //$orderGroup->setPlace($place);
+
             $em->persist($orderGroup);
             $em->flush();
-        return new JsonResponse($token, 200);
+
+            return new JsonResponse($token, 200);
         } else {
             $user = "T'es pas connecté, connard.";
         }
