@@ -13,7 +13,7 @@ class updateModifierUser
         $this->token = $token;
     }
 
-    public function preUpdate(LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
 
@@ -22,8 +22,9 @@ class updateModifierUser
         }
 
         $entityManager = $args->getEntityManager();
+
         $id = $this->token->getToken()->getUser()->getId();
-        
+
         $entity->setModifierUserId($id);
     }
 }
