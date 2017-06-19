@@ -67,14 +67,14 @@ class Place extends EntityInfos
     /**
      * @var float
      *
-     * @ORM\Column(name="longitude", type="float", nullable=true)
+     * @ORM\Column(name="longitude", type="float")
      */
     private $longitude;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="latitude", type="float", nullable=true)
+     * @ORM\Column(name="latitude", type="float")
      */
     private $latitude;
 
