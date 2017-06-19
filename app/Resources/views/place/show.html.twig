@@ -121,8 +121,10 @@
 
     <br>
     {{ form_start(formOrderGroup) }}
+        <h3>Vous aussi, générez votre token.</h3>
         {{ form_widget(formOrderGroup) }}
         <input type="submit" class="btn btn-primary btn-test" value="Generate token bitch"/>
+        <div class="tokenInfo"></div>
         <input type="hidden" value="{{ place.id }}" name="place">
     {{ form_end(formOrderGroup) }}
     <a href="{{ path('place_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Back to the list</a>

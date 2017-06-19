@@ -84,3 +84,48 @@ body {
     align-items: center;
   }
 }
+
+
+/* TokenInfos */
+
+form[name=order_group] {
+  padding: 30px 0 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form[name=order_group] h3 {
+  margin-bottom: 20px;
+}
+.tokenInfo {
+  display: inline-flex;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  color: #fff;
+  opacity: 0;
+  transition: all 0.5s ease;
+  transform: translateY(50px);
+}
+.tokenInfo.success, .tokenInfo.failed {
+  opacity: 1;
+  transform: translateY(0px);
+  animation-name: hide;
+}
+.tokenInfo.success {
+  background-color: #4DB6AC;
+}
+.tokenInfo.failed {
+  background-color: #F44336;
+  animation-duration: 500ms;
+  animation-delay: 2000ms;
+  animation-fill-mode: forwards;
+}
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
