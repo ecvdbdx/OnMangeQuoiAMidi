@@ -2,8 +2,7 @@
 {% block body %}
     <div class="row">
         <div class="col-md-12">
-            <h2>Erreur 403</h2>
-            <p>Désolé, la page que vous essayez d'atteindre est protégée...</p>
+          {{status_code|httpcat|raw}}
         </div>
     </div>
 {% endblock %}

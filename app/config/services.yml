@@ -15,3 +15,7 @@ services:
     getData:
         class: AppBundle\Command\GetData
         arguments: ["@doctrine.orm.entity_manager"]
+    httpcatFilter:
+        class: AppBundle\Twig\AppExtension
+        tags:
+            - { name: twig.extension }
