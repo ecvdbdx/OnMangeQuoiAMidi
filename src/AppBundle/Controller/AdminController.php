@@ -34,7 +34,6 @@ class AdminController extends Controller
         $stats['latest_created_place'] = $em->getRepository('AppBundle:Place')->getLatestCreatedPlace();
         $stats['latest_modified_place'] = $em->getRepository('AppBundle:Place')->getLatestModifiedPlace();
 
-        //
         $ordersByDay = $em->getRepository('AppBundle:OrderGroup')
            ->createQueryBuilder('p')
            ->select('COUNT(p)')
@@ -62,9 +61,6 @@ class AdminController extends Controller
 
             $orders_by_day[0]['data'][] = $order_stats;
         }
-
-        dump($orders_by_day);
-
 
         $orders_by_day_chart = new Highchart();
         $orders_by_day_chart->chart->renderTo('linechart');
