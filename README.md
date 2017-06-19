@@ -103,3 +103,12 @@ Add a new remote interpreter using the following SSH credentials
     . port: 2222
     . user: root
     . password: lbmonkey
+
+## Generate PHPMetrics report
+
+```
+composer global require 'phpmetrics/phpmetrics';
+./scripts/phpmetrics;
+```
+
+The report will be accessible at : `/phpmetrics/index.html`
