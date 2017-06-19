@@ -30,7 +30,7 @@ class EntityInfos
     /**
      * @var int
      *
-     * @ORM\Column(name="modifier_user_id", type="integer", length=255)
+     * @ORM\Column(name="modifier_user_id", type="integer", length=255, nullable=true)
      */
     private $modifier_user_id;
 
