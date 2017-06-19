@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="order_group")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrderGroupRepository")
  */
-class OrderGroup
+class OrderGroup extends EntityInfos
 {
     /**
      * @var int
