@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="order_menu")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrderMenuRepository")
  */
-class OrderMenu
+class OrderMenu extends EntityInfos
 {
     /**
      * @var int

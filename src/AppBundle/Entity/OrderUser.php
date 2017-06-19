@@ -11,7 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="order_user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrderUserRepository")
  */
-class OrderUser
+class OrderUser extends EntityInfos
 {
     /**
      * @var int
