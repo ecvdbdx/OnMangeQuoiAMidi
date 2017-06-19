@@ -14,6 +14,7 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/web/phpmetrics/
 ### Composer template
 composer.phar
 vendor/

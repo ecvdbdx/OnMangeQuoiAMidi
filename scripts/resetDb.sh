@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Drops the database
 php bin/console doctrine:database:drop --force; 
 # Creates the database
