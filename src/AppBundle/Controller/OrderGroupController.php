@@ -62,9 +62,9 @@ class OrderGroupController extends Controller
             $em->persist($orderGroup);
             $em->flush();
 
-            return new JsonResponse($token, 200);
+            return new JsonResponse($token);
         } else {
-            $user = "T'es pas connecté, connard.";
+            return new JsonResponse(false);
         }
     }
 }
