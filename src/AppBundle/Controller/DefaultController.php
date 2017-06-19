@@ -26,4 +26,25 @@ class DefaultController extends Controller
             'base_dir' => 'toto',
         ]);
     }
+    /**
+     * @Route("/testmail", name="testmail")
+     */
+    public function sendMailAction()
+    {
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('send@example.com')
+            ->setTo('recipient@example.com')
+            ->setBody(
+                $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                    'Emails/registration.html.twig',
+                    array('name' => "name")
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+
+        return $this->redirect($this->generateUrl('homepage'));
+    }
 }

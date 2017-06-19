@@ -1,5 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>{{ content }}</h1>
+<h1>Order at {{ orderGroup.place.name }} by {{orderGroup.user.username}}</h1>
+<div class="row">
+  <div class="col-lg-6">
+    <h3>Selection</h3>
+    <form method="post" action="{{path('order_user_create')}}" class="form-inline">
+      <h4>Meals</h4>
+      {% for meal in orderGroup.place.meals %}
+      <div class="form-group row">
+        <label for="meal_{{ meal.id }}" class="control-label col-lg-8"> {{ meal.name }} </label>
+        <input type="number" class="form-control col-lg-4" id="meal_{{ meal.id }}" name="order_user[meal][{{ meal.id }}]" value="0" min="0">
+      </div>
+      {% endfor %}
+      <h4>Menus</h4>
+      {% for menu in orderGroup.place.menus %}
+      <div class="form-group row">
+        <label for="menu_{{ menu.id }}" class="control-label col-lg-8"> {{ menu.name }} </label>
+        <input type="number" class="form-control col-lg-4" id="menu_{{ menu.id }}" name="order_user[menu][{{ menu.id }}]" value="0" min="0">
+      </div>
+      {% endfor %}
+      <input type="hidden" name="order_user[order_group]" value="{{ orderGroup.token }}">
+      <input type="submit" class="btn btn-primary" value="Order"/>
+    </form>
+  </div>
+  <div class="col-lg-6">
+    <h3>Commandes</h3>
+    <div class="row">
+    {% for commande in orderGroup.orderUsers %}
+    {% set total = 0 %}
+      <div class="col-lg-8">
+        <span> {{ commande.user.username }}</span>
+        <ul>
+          {% for orderMeals in commande.OrderMeals %}
+          <li>{{ orderMeals.meal.name }} - {{ orderMeals.meal.price }}€ | x{{ orderMeals.quantity }}</li>
+          {% set total = total + orderMeals.meal.price * orderMeals.quantity %}
+          {% endfor %}
+          {% for orderMenus in commande.OrderMenus %}
+          <li>{{ orderMenus.menu.name }} - {{ orderMenus.menu.price }}€ | x{{ orderMenus.quantity }}</li>
+          {% set total = total +  orderMenus.menu.price * orderMenus.quantity %}
+          {% endfor %}
+        </ul>
+        <span>Total : {{ total }}€</span>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
 {% endblock %}

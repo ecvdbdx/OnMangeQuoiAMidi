@@ -2,6 +2,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\OrderGroup;
+use AppBundle\Entity\OrderUser;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,6 +16,25 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  */
 class OrderGroupController extends Controller
 {
+
+  /**
+   * Finds and displays an OrderGroup entity.
+   *
+   * @Route("/order", name="order_group_show")
+   * @Method({"GET"})
+   */
+   public function showAction(Request $request)
+   {
+     $token = $request->get('uid');
+
+     $em = $this->getDoctrine()->getManager();
+     $orderGroup = $em->getRepository('AppBundle:OrderGroup')->findOneByToken($token);
+
+       return $this->render('place/order_create.html.twig', array(
+         'orderGroup' => $orderGroup
+       ));
+     }
+
     /**
      * Creates a command
      *
@@ -39,7 +59,6 @@ class OrderGroupController extends Controller
             $orderGroup->setExpirationDate($formatted_expiration_date);
             $orderGroup->setPlace($place);
             $orderGroup->setUser($user);
-
             $em->persist($orderGroup);
             $em->flush();
 
