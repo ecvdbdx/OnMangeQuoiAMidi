@@ -23,8 +23,10 @@ class updateModifierUser
 
         $entityManager = $args->getEntityManager();
 
-        $id = $this->token->getToken()->getUser()->getId();
+        if ($this->token->getToken()) {
+            $id = $this->token->getToken()->getUser()->getId();
+            $entity->setModifierUserId($id);
+        }
 
-        $entity->setModifierUserId($id);
     }
 }
