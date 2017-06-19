@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * OrderUser
@@ -53,5 +54,106 @@ class OrderUser
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return OrderGroup
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set orderGroup
+     *
+     * @param \AppBundle\Entity\OrderGroup $orderGroup
+     *
+     * @return OrderGroup
+     */
+    public function setOrderGroup(\AppBundle\Entity\OrderGroup $orderGroup = null)
+    {
+        $this->orderGroup = $orderGroup;
+
+        return $this;
+    }
+
+    /**
+     * Get orderGroup
+     *
+     * @return \AppBundle\Entity\OrderGroup
+     */
+    public function getOrderGroup()
+    {
+        return $this->orderGroup;
+    }
+
+    /**
+     * Set menu
+     *
+     * @param \AppBundle\Entity\OrderMenu $orderMenus
+     *
+     * @return OrderUser
+     */
+    public function setOrderMenus(\AppBundle\Entity\OrderMenu $orderMenus = null)
+    {
+        $this->orderMenus = $orderMenus;
+
+        return $this;
+    }
+
+    /**
+     * Get menu
+     *
+     * @return \AppBundle\Entity\OrderMenu
+     */
+    public function getOrderMenus()
+    {
+        return $this->orderMenus;
+    }
+
+    /**
+     * Set meals
+     *
+     * @param \AppBundle\Entity\OrderMeal $orderMeals
+     *
+     * @return OrderUser
+     */
+    public function setOrderMeals(\AppBundle\Entity\OrderMeal $orderMeals = null)
+    {
+        $this->orderMeals = $orderMeals;
+
+        return $this;
+    }
+
+    /**
+     * Get meals
+     *
+     * @return \AppBundle\Entity\OrderMeal
+     */
+    public function getOrderMeals()
+    {
+        return $this->orderMeals;
+    }
+
+    public function __construct()
+    {
+        $this->orderMeals = new ArrayCollection();
+        $this->orderMenus = new ArrayCollection();
+    }
+}
