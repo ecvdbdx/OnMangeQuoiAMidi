@@ -20,6 +20,15 @@ use AppBundle\Form\PlaceType;
 use AppBundle\Entity\OrderGroup;
 use AppBundle\Form\MealType;
 use AppBundle\Form\OrderGroupType;
+use Ivory\GoogleMap\Map;
+use Ivory\GoogleMap\Overlay\Marker;
+use Ivory\GoogleMap\Base\Coordinate;
+
+use Ivory\GoogleMap\Service\Geocoder\GeocoderService;
+use Ivory\GoogleMap\Service\Serializer\SerializerBuilder;
+use Http\Adapter\Guzzle6\Client;
+use Http\Message\MessageFactory\GuzzleMessageFactory;
+use Ivory\GoogleMap\Service\Geocoder\Request\GeocoderAddressRequest;
 
 /**
  * Place controller.
@@ -36,9 +45,10 @@ class PlaceController extends Controller
      */
     public function indexAction(Request $request)
     {
+        // On récupère les places
         $em = $this->getDoctrine()->getManager();
-
         $places = $em->getRepository('AppBundle:Place')->findAll();
+
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -62,7 +72,6 @@ class PlaceController extends Controller
             $map->getOverlayManager()->addMarker(new Marker(new Coordinate($place->getLatitude(), $place->getLongitude())));
         }
 
-
         /***********************************************
          ************ Get address informations *********
          **********************************************/
@@ -78,6 +87,7 @@ class PlaceController extends Controller
 
         return $this->render('place/index.html.twig', array(
             'pagination' => $pagination,
+            'places' => $places,
             'map' => $map
         ));
     }
