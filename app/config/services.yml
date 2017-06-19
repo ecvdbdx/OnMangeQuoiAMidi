@@ -12,3 +12,6 @@ services:
         arguments: ["@security.token_storage"]
         tags:
           - { name: doctrine.event_listener, event : prePersist}
+    getData:
+        class: AppBundle\Command\GetData
+        arguments: ["@doctrine.orm.entity_manager"]
