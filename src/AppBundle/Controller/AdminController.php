@@ -30,16 +30,16 @@ class AdminController extends Controller
         $stats['latest_created_place'] = $infoProvider->getLatestCreatedPlace();
         $stats['latest_modified_place'] = $infoProvider->getLatestModifiedPlace();
 
-        $orders_by_day = $infoProvider->getOrdersByDay();
+        $orders_from_last_week = $infoProvider->getOrdersFromLastWeek();
         
-        $formattedOrdersByDay = array(
+        $formattedOrdersFromLastWeek = array(
             array("name" => "Order this week", "data" => array())
         );
 
         for ($i = 6; $i >= 0; $i--) {
 
-            $date = $orders_by_day[0]['data'][$i]['date'];
-            $orders = $orders_by_day[0]['data'][$i]['orders'];
+            $date = $orders_from_last_week[0]['data'][$i]['date'];
+            $orders = $orders_from_last_week[0]['data'][$i]['orders'];
 
             $order_stats = array(
                 'x' => $date->format('d'),
@@ -47,18 +47,18 @@ class AdminController extends Controller
                 'name' => $date->format('d F Y')
             );
 
-            $formattedOrdersByDay[0]['data'][] = $order_stats;
+            $formattedOrdersFromLastWeek[0]['data'][] = $order_stats;
         }
 
-        $orders_by_day_chart = new Highchart();
-        $orders_by_day_chart->chart->renderTo('linechart');
-        $orders_by_day_chart->xAxis->title(array('text' => "Day of week"));
-        $orders_by_day_chart->yAxis->title(array('text' => "Orders"));
-        $orders_by_day_chart->series($formattedOrdersByDay);
+        $orders_from_last_week_chart = new Highchart();
+        $orders_from_last_week_chart->chart->renderTo('linechart');
+        $orders_from_last_week_chart->xAxis->title(array('text' => "Day of week"));
+        $orders_from_last_week_chart->yAxis->title(array('text' => "Orders"));
+        $orders_from_last_week_chart->series($formattedOrdersFromLastWeek);
 
         return $this->render('admin/dashboard.html.twig', array(
             'stats' => $stats,
-            'orders_by_day_chart' => $orders_by_day_chart
+            'orders_from_last_week_chart' => $orders_from_last_week_chart
         ));
     }
 }

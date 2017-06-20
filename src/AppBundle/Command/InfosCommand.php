@@ -42,7 +42,7 @@ class InfosCommand extends ContainerAwareCommand
 
         $latestModifiedPlace = $infoProvider->getLatestModifiedPlace()->getName();
 
-        $ordersByDay = $infoProvider->getOrdersByDay();
+        $ordersFromLastWeek = $infoProvider->getOrdersFromLastWeek();
 
         $io->section('App statistics');
 
@@ -64,8 +64,8 @@ class InfosCommand extends ContainerAwareCommand
 
         for ($i = 6; $i >= 0; $i--) {
             
-            $date = $ordersByDay[0]['data'][$i]['date']->format('d F y');
-            $orders = $ordersByDay[0]['data'][$i]['orders'];
+            $date = $ordersFromLastWeek[0]['data'][$i]['date']->format('d F y');
+            $orders = $ordersFromLastWeek[0]['data'][$i]['orders'];
 
             $io->write($date .' : '. $orders);
             $io->newLine();

@@ -73,9 +73,9 @@ class InfoProvider
         }
     }
 
-    public function getOrdersByDay()
+    public function getOrdersFromLastWeek()
     {
-        $orders_by_day = array(
+        $orders_from_last_week = array(
             array("name" => "Order this week", "data" => array())
         );
 
@@ -89,11 +89,11 @@ class InfoProvider
                 'orders' => (int)$orderThisDay,
             );
 
-            $orders_by_day[0]['data'][] = $order_stats;
+            $orders_from_last_week[0]['data'][] = $order_stats;
         }
 
-        if ($orders_by_day) {
-            return $orders_by_day;
+        if ($orders_from_last_week) {
+            return $orders_from_last_week;
         }
     }
 }
