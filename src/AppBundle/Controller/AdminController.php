@@ -20,11 +20,6 @@ class AdminController extends Controller
     {
         $stats = [];
 
-        $emConfig = $this->getDoctrine()->getEntityManager()->getConfiguration();
-        $emConfig->addCustomDatetimeFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
-        $emConfig->addCustomDatetimeFunction('MONTH', 'DoctrineExtensions\Query\Mysql\Month');
-        $emConfig->addCustomDatetimeFunction('DAY', 'DoctrineExtensions\Query\Mysql\Day');
-
         $em = $this->getDoctrine()->getManager();
 
         $stats['number_of_users'] = $em->getRepository('AppBundle:User')->getNumberOfUsers();
@@ -34,13 +29,6 @@ class AdminController extends Controller
         $stats['latest_created_place'] = $em->getRepository('AppBundle:Place')->getLatestCreatedPlace();
         $stats['latest_modified_place'] = $em->getRepository('AppBundle:Place')->getLatestModifiedPlace();
 
-        $ordersByDay = $em->getRepository('AppBundle:OrderGroup')
-           ->createQueryBuilder('p')
-           ->select('COUNT(p)')
-           ->where('YEAR(p.created_at) = :year')
-           ->andWhere('MONTH(p.created_at) = :month')
-           ->andWhere('DAY(p.created_at) = :day');
-
         $orders_by_day = array(
             array("name" => "Order this week", "data" => array())
         );
@@ -48,14 +36,11 @@ class AdminController extends Controller
         for ($i = 6; $i >= 0; $i--) {
             $date = new \DateTime('-'. $i .' days');
 
-            $orderThisDay = $ordersByDay->setParameter('year', $date->format('Y'))
-                                        ->setParameter('month', $date->format('m'))
-                                        ->setParameter('day', $date->format('d'))
-                                        ->getQuery();
+            $orderThisDay = $em->getRepository('AppBundle:OrderGroup')->getNumberOfOrdersPerDay($date->format('Y'), $date->format('m'), $date->format('d'));
 
             $order_stats = array(
                 'x' => $date->format('d'),
-                'y' => (int)$orderThisDay->getSingleScalarResult(),
+                'y' => (int)$orderThisDay,
                 'name' => $date->format('d F Y')
             );
 
