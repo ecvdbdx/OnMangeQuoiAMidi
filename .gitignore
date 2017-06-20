@@ -141,3 +141,7 @@ supervisord.log
 supervisord.pid
 
 node_modules
+
+# Front
+src/AppBundle/Resources/public/css/style.css
+src/AppBundle/Resources/public/js/build.js
