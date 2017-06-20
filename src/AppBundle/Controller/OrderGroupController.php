@@ -2,12 +2,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\OrderGroup;
-use AppBundle\Entity\OrderUser;
+use Http\Discovery\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * OrderGroup controller.
@@ -20,15 +21,16 @@ class OrderGroupController extends Controller
   /**
    * Finds and displays an OrderGroup entity.
    *
-   * @Route("/order", name="order_group_show")
+   * @Route("/order/{token}", name="order_group_show")
    * @Method({"GET"})
    */
-   public function showAction(Request $request)
+   public function showAction($token)
    {
-     $token = $request->get('uid');
-
-     $em = $this->getDoctrine()->getManager();
-     $orderGroup = $em->getRepository('AppBundle:OrderGroup')->findOneByToken($token);
+       $em = $this->getDoctrine()->getManager();
+       $orderGroup = $em->getRepository('AppBundle:OrderGroup')->findOneBy(['token' => $token]);
+       if($orderGroup == null) {
+           throw new NotFoundHttpException();
+       }
 
        return $this->render('place/order_create.html.twig', array(
          'orderGroup' => $orderGroup

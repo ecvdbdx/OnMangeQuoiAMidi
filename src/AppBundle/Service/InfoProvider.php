@@ -2,6 +2,7 @@
 namespace AppBundle\Service;
 
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class InfoProvider
 {
@@ -11,6 +12,9 @@ class InfoProvider
         $this->em = $em;
     }
 
+    /**
+     * @return int
+     */
     public function getPlaces()
     {
 
@@ -18,9 +22,14 @@ class InfoProvider
 
         if ($places) {
             return $places;
+        } else {
+            return 0;
         }
     }
 
+    /**
+     * @return int
+     */
     public function getMeals()
     {
 
@@ -28,9 +37,14 @@ class InfoProvider
 
         if ($meals) {
             return $meals;
+        } else {
+            return 0;
         }
     }
 
+    /**
+     * @return int
+     */
     public function getMenus()
     {
 
@@ -38,9 +52,14 @@ class InfoProvider
 
         if ($menus) {
             return $menus;
+        } else {
+            return 0;
         }
     }
 
+    /**
+     * @return \AppBundle\Entity\Place|null
+     */
     public function getLatestCreatedPlace()
     {
 
@@ -48,9 +67,14 @@ class InfoProvider
 
         if ($latestCreatedPlace) {
             return $latestCreatedPlace;
+        } else {
+            throw new NotFoundHttpException();
         }
     }
 
+    /**
+     * @return \AppBundle\Entity\Place|null
+     */
     public function getLatestModifiedPlace()
     {
 
@@ -58,18 +82,28 @@ class InfoProvider
 
         if ($latestModifiedPlace) {
             return $latestModifiedPlace;
+        } else {
+            throw new NotFoundHttpException();
         }
     }
 
+    /**
+     * @return int
+     */
     public function getUsers()
     {
         $users = $this->em->getRepository('AppBundle:User')->getNumberOfUsers();
 
         if ($users) {
             return $users;
+        } else {
+            return 0;
         }
     }
 
+    /**
+     * @return array|null
+     */
     public function getOrdersFromLastWeek()
     {
         $orders_from_last_week = array(
@@ -89,8 +123,6 @@ class InfoProvider
             $orders_from_last_week[0]['data'][] = $order_stats;
         }
 
-        if ($orders_from_last_week) {
-            return $orders_from_last_week;
-        }
+        return $orders_from_last_week;
     }
 }

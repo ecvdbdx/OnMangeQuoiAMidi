@@ -2,22 +2,19 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Entity\OrderGroup;
 use AppBundle\Entity\Place;
+use AppBundle\Form\OrderGroupType;
+use AppBundle\Form\PlaceType;
+use Ivory\GoogleMap\Base\Coordinate;
 use Ivory\GoogleMap\Map;
 use Ivory\GoogleMap\MapTypeId;
-use Ivory\GoogleMap\Base\Coordinate;
-use Ivory\GoogleMap\Overlay\Marker;
 use Ivory\GoogleMap\Overlay\InfoWindow;
-use Ivory\GoogleMap\Overlay\InfoWindowType;
-use AppBundle\Entity\Meal;
-use AppBundle\Form\PlaceType;
-use AppBundle\Entity\OrderGroup;
-use AppBundle\Form\MealType;
-use AppBundle\Form\OrderGroupType;
+use Ivory\GoogleMap\Overlay\Marker;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Place controller.
@@ -121,7 +118,7 @@ class PlaceController extends Controller
         return $this->render('place/show.html.twig', array(
             'place' => $place,
             'delete_form' => $delete_form->createView(),
-            'formOrderGroup'  => $formOrder->createView()
+            'formOrderGroup' => $formOrder->createView()
         ));
     }
 

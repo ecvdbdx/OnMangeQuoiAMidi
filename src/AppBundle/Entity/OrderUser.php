@@ -44,6 +44,11 @@ class OrderUser extends EntityInfos
      */
     private $orderMenus;
 
+    public function __construct()
+    {
+        $this->orderMeals = new ArrayCollection();
+        $this->orderMenus = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -53,20 +58,6 @@ class OrderUser extends EntityInfos
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return OrderGroup
-     */
-    public function setUser(\AppBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
     }
 
     /**
@@ -80,15 +71,15 @@ class OrderUser extends EntityInfos
     }
 
     /**
-     * Set orderGroup
+     * Set user
      *
-     * @param \AppBundle\Entity\OrderGroup $orderGroup
+     * @param \AppBundle\Entity\User $user
      *
-     * @return OrderGroup
+     * @return OrderUser
      */
-    public function setOrderGroup(\AppBundle\Entity\OrderGroup $orderGroup = null)
+    public function setUser(User $user = null)
     {
-        $this->orderGroup = $orderGroup;
+        $this->user = $user;
 
         return $this;
     }
@@ -96,7 +87,7 @@ class OrderUser extends EntityInfos
     /**
      * Get orderGroup
      *
-     * @return \AppBundle\Entity\OrderGroup
+     * @return OrderUser
      */
     public function getOrderGroup()
     {
@@ -104,15 +95,15 @@ class OrderUser extends EntityInfos
     }
 
     /**
-     * Set menu
+     * Set orderGroup
      *
-     * @param \AppBundle\Entity\OrderMenu $orderMenus
+     * @param \AppBundle\Entity\OrderGroup $orderGroup
      *
      * @return OrderUser
      */
-    public function setOrderMenus(\AppBundle\Entity\OrderMenu $orderMenus = null)
+    public function setOrderGroup(OrderGroup $orderGroup = null)
     {
-        $this->orderMenus = $orderMenus;
+        $this->orderGroup = $orderGroup;
 
         return $this;
     }
@@ -128,15 +119,15 @@ class OrderUser extends EntityInfos
     }
 
     /**
-     * Set meals
+     * Set menu
      *
-     * @param \AppBundle\Entity\OrderMeal $orderMeals
+     * @param \AppBundle\Entity\OrderMenu $orderMenus
      *
      * @return OrderUser
      */
-    public function setOrderMeals(\AppBundle\Entity\OrderMeal $orderMeals = null)
+    public function setOrderMenus(OrderMenu $orderMenus = null)
     {
-        $this->orderMeals = $orderMeals;
+        $this->orderMenus = $orderMenus;
 
         return $this;
     }
@@ -151,9 +142,17 @@ class OrderUser extends EntityInfos
         return $this->orderMeals;
     }
 
-    public function __construct()
+    /**
+     * Set meals
+     *
+     * @param \AppBundle\Entity\OrderMeal $orderMeals
+     *
+     * @return OrderUser
+     */
+    public function setOrderMeals(OrderMeal $orderMeals = null)
     {
-        $this->orderMeals = new ArrayCollection();
-        $this->orderMenus = new ArrayCollection();
+        $this->orderMeals = $orderMeals;
+
+        return $this;
     }
 }
