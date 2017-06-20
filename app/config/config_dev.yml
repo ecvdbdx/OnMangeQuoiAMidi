@@ -41,7 +41,7 @@ bazinga_faker:
         AppBundle\Entity\Place:
             number: 30
             custom_formatters:
-                name: { method: company }
+                name: { method: restaurant }
                 description: { method: realText }
                 city: { method: city }
                 street: { method: streetAddress }
