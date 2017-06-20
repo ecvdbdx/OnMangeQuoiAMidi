@@ -7,9 +7,13 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@a
-    placeUpdateListener:
+    updateModifierUserListener:
         class: AppBundle\EventListener\updateModifierUser
         arguments: ["@security.token_storage"]
+        tags:
+          - { name: doctrine.event_listener, event : prePersist}
+    generatePlaceCoordinatesListener:
+        class: AppBundle\EventListener\GeneratePlaceCoordinates
         tags:
           - { name: doctrine.event_listener, event : prePersist}
     getData:
