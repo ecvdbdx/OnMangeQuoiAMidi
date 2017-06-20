@@ -2,9 +2,6 @@
 namespace AppBundle\Service;
 
 use Doctrine\ORM\EntityManager;
-// use AppBundle\Entity\Place;
-// use AppBundle\Entity\Meal;
-// use AppBundle\Entity\User;
 
 class InfoProvider
 {
