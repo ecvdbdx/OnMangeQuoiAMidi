@@ -24,4 +24,17 @@ class PlaceControllerTest extends WebTestCase
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
+
+    public function testSubmitButton()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/place/3');
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $form = $crawler->filter('form[name="order_group"]')->form();
+        $client->submit($form);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
 }
