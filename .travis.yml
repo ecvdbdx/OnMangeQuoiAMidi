@@ -8,6 +8,7 @@ before_script:
   - php bin/console doctrine:database:create --env=test
   - php bin/console doctrine:schema:create --env=test
   - php bin/console faker:populate --env=test
+  - echo $FOO
 
 script:
   - ./vendor/bin/phpunit
