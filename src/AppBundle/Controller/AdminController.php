@@ -29,16 +29,28 @@ class AdminController extends Controller
         $stats['latest_created_place'] = $em->getRepository('AppBundle:Place')->getLatestCreatedPlace();
         $stats['latest_modified_place'] = $em->getRepository('AppBundle:Place')->getLatestModifiedPlace();
 
-        //
         $orders_by_day = array(
-            array("name" => "Order this week", "data" => array(1, 2, 4, 5, 6, 3, 8))
+            array("name" => "Order this week", "data" => array())
         );
 
+        for ($i = 6; $i >= 0; $i--) {
+            $date = new \DateTime('-'. $i .' days');
+
+            $orderThisDay = $em->getRepository('AppBundle:OrderGroup')->getNumberOfOrdersPerDay($date->format('Y'), $date->format('m'), $date->format('d'));
+
+            $order_stats = array(
+                'x' => $date->format('d'),
+                'y' => (int)$orderThisDay,
+                'name' => $date->format('d F Y')
+            );
+
+            $orders_by_day[0]['data'][] = $order_stats;
+        }
+
         $orders_by_day_chart = new Highchart();
-        $orders_by_day_chart->chart->renderTo('linechart');  // The #id of the div where to render the chart
-//        $orders_by_day_chart->title->text('Orders this week');
-        $orders_by_day_chart->xAxis->title(array('text' => "Orders"));
-        $orders_by_day_chart->yAxis->title(array('text' => "Day of week"));
+        $orders_by_day_chart->chart->renderTo('linechart');
+        $orders_by_day_chart->xAxis->title(array('text' => "Day of week"));
+        $orders_by_day_chart->yAxis->title(array('text' => "Orders"));
         $orders_by_day_chart->series($orders_by_day);
 
         return $this->render('admin/dashboard.html.twig', array(

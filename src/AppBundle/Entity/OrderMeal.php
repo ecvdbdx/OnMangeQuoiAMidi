@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="order_meal")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrderMealRepository")
  */
-class OrderMeal
+class OrderMeal extends EntityInfos
 {
     /**
      * @var int
@@ -73,5 +73,52 @@ class OrderMeal
     {
         return $this->quantity;
     }
-}
 
+    /**
+     * Set meal
+     *
+     * @param \AppBundle\Entity\Meal $meal
+     *
+     * @return OrderMeal
+     */
+    public function setMeal(\AppBundle\Entity\Meal $meal = null)
+    {
+        $this->meal = $meal;
+
+        return $this;
+    }
+
+    /**
+     * Get meal
+     *
+     * @return \AppBundle\Entity\Meal
+     */
+    public function getMeal()
+    {
+        return $this->meal;
+    }
+
+    /**
+     * Set orderUser
+     *
+     * @param \AppBundle\Entity\User $orderUser
+     *
+     * @return OrderMeal
+     */
+    public function setOrderUser(\AppBundle\Entity\OrderUser $orderUser = null)
+    {
+        $this->orderUser = $orderUser;
+
+        return $this;
+    }
+
+    /**
+     * Get orderUser
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getOrderUser()
+    {
+        return $this->orderUser;
+    }
+}

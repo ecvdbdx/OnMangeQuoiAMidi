@@ -30,6 +30,13 @@ class Meal extends EntityInfos
     private $name;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float")
+     */
+    private $price;
+
+    /**
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Place", inversedBy="meals")
@@ -82,6 +89,30 @@ class Meal extends EntityInfos
     }
 
     /**
+     * Set price
+     *
+     * @param float $price
+     *
+     * @return Menu
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
      * Get place
      *
      * @return string
@@ -106,4 +137,3 @@ class Meal extends EntityInfos
     }
 
 }
-

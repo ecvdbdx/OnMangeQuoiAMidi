@@ -10,4 +10,18 @@ namespace AppBundle\Repository;
  */
 class OrderGroupRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getNumberOfOrdersPerDay($year, $month, $day)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->where('YEAR(p.created_at) = :year')
+            ->andWhere('MONTH(p.created_at) = :month')
+            ->andWhere('DAY(p.created_at) = :day')
+            ->setParameter('year', $year)
+            ->setParameter('month', $month)
+            ->setParameter('day', $day)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+    }
 }

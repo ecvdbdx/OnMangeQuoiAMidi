@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% from "TwigBundle:Macros:error.html.twig" import httpcat %}
+
+{% block body %}
+    {{ httpcat(status_code) }}
+{% endblock %}
