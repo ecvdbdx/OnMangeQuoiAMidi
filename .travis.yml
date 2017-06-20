@@ -2,13 +2,26 @@ language: php
 php:
     - 7.0
 
+addons:
+  ssh_known_hosts: <deploy-host>
+
 before_script:
   - cp app/config/parameters.yml.travis app/config/parameters.yml
   - composer install
   - php bin/console doctrine:database:create --env=test
   - php bin/console doctrine:schema:create --env=test
   - php bin/console faker:populate --env=test
-  - echo $FOO
+  - openssl aes-256-cbc -K $encrypted_<...>_key -iv $encrypted_<...>_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/deploy_rsa
+  - ssh-add /tmp/deploy_rsa
 
 script:
   - ./vendor/bin/phpunit
+
+deploy:
+  - provider: script
+    script: ssh $omqam_user@$omqam_host ./scripts/fetchResetAndClearCache.sh
+    skip_cleanup: true
+    on:
+      branch: master
