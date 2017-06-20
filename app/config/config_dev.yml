@@ -39,7 +39,7 @@ bazinga_faker:
     locale: fr_FR
     entities:
         AppBundle\Entity\Place:
-            number: 10
+            number: 30
             custom_formatters:
                 name: { method: company }
                 description: { method: realText }
