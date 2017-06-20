@@ -107,7 +107,6 @@ Add a new remote interpreter using the following SSH credentials
 ## Generate PHPMetrics report
 
 ```
-composer global require 'phpmetrics/phpmetrics';
 ./scripts/phpmetrics;
 ```
 
