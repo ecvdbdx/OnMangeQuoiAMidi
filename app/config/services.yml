@@ -24,3 +24,7 @@ services:
         arguments: ["@faker.generator"]
         tags:
             - { name: bazinga_faker.provider }
+    infoProvider:
+        class: AppBundle\Service\InfoProvider
+        arguments: ["@doctrine.orm.entity_manager"]
+        
