@@ -2,12 +2,14 @@
 
 namespace Tests\AppBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Cookie;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class OrderGroupControllerTest extends WebTestCase
 {
+    /**
+     * @var Client
+     */
     private $client = null;
 
     public function setUp()
@@ -17,12 +19,15 @@ class OrderGroupControllerTest extends WebTestCase
 
     public function testSubmitButtonWithoutBeingAuthenticated()
     {
-        $crawler = $this->client->request('GET', '/orderGroup/order?uid=5947d492a52cc');
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $route = $this->client->getContainer()->get('router')->generate('order_group_show', ['token' => '5947d492a52cc'], false);
 
-        $form = $crawler->filter('form')->form();
+        $crawler = $this->client->request('GET', $route);
+        $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
+
+        // TODO If you want to test a specific OrderGroup, you must be sure it exists first
+        /*$form = $crawler->filter('form')->form();
         $this->client->submit($form);
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());*/
 
     }
 

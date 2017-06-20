@@ -10,6 +10,9 @@ namespace AppBundle\Repository;
  */
 class MealRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return int
+     */
     public function getNumberOfMeals()
     {
         return $this->createQueryBuilder('m')

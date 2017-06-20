@@ -11,7 +11,9 @@ class PlaceControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/place/3');
+        $route = $client->getContainer()->get('router')->generate('place_show', ['place' => 3], false);
+
+        $client->request('GET', $route);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
@@ -20,7 +22,9 @@ class PlaceControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/place/new');
+        $route = $client->getContainer()->get('router')->generate('place_new', array(), false);
+
+        $client->request('GET', $route);
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
@@ -29,10 +33,13 @@ class PlaceControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/place/3');
+        $route = $client->getContainer()->get('router')->generate('place_show', ['place' => 3], false);
+
+        $crawler = $client->request('GET', $route);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $form = $crawler->filter('form[name="order_group"]')->form();
+
+        $form = $crawler->filter('form[name="appbundle_ordergroup"]')->form();
         $client->submit($form);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }

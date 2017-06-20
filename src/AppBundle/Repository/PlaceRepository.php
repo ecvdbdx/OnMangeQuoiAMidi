@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Place;
 
 /**
  * PlaceRepository
@@ -10,6 +11,9 @@ namespace AppBundle\Repository;
  */
 class PlaceRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return int
+     */
     public function getNumberOfPlaces()
     {
         return $this->createQueryBuilder('p')
@@ -18,6 +22,10 @@ class PlaceRepository extends \Doctrine\ORM\EntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * @return Place|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getLatestCreatedPlace()
     {
         return $this->createQueryBuilder('p')
@@ -27,6 +35,10 @@ class PlaceRepository extends \Doctrine\ORM\EntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @return Place|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getLatestModifiedPlace()
     {
         return $this->createQueryBuilder('p')

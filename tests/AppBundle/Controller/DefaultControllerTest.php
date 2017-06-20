@@ -10,7 +10,9 @@ class DefaultControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/');
+        $route = $client->getContainer()->get('router')->generate('homepage', array(), false);
+
+        $crawler = $client->request('GET', $route);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertEquals('On mange quoi à midi ?', $crawler->filter('.site-title')->text());

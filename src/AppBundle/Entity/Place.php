@@ -30,7 +30,7 @@ class Place extends EntityInfos
     private $name;
 
     /**
-     * @var text
+     * @var string
      *
      * @ORM\Column(name="description", type="text", length=255)
      */
@@ -146,6 +146,16 @@ class Place extends EntityInfos
     }
 
     /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
@@ -160,16 +170,6 @@ class Place extends EntityInfos
     }
 
     /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * @return string
      */
     public function getCity()
@@ -179,6 +179,7 @@ class Place extends EntityInfos
 
     /**
      * @param string $city
+     * @return Place
      */
     public function setCity($city)
     {
@@ -188,7 +189,7 @@ class Place extends EntityInfos
     }
 
     /**
-     * @return text
+     * @return string
      */
     public function getDescription()
     {
@@ -196,7 +197,8 @@ class Place extends EntityInfos
     }
 
     /**
-     * @param text $description
+     * @param string $description
+     * @return Place
      */
     public function setDescription($description)
     {
@@ -215,6 +217,7 @@ class Place extends EntityInfos
 
     /**
      * @param string $street
+     * @return Place
      */
     public function setStreet($street)
     {
@@ -233,6 +236,7 @@ class Place extends EntityInfos
 
     /**
      * @param string $zip_code
+     * @return Place
      */
     public function setZipCode($zip_code)
     {
@@ -251,6 +255,7 @@ class Place extends EntityInfos
 
     /**
      * @param string $country
+     * @return Place
      */
     public function setCountry($country)
     {
@@ -260,7 +265,7 @@ class Place extends EntityInfos
     }
 
     /**
-     * @return decimal
+     * @return float
      */
     public function getLongitude()
     {
@@ -268,7 +273,8 @@ class Place extends EntityInfos
     }
 
     /**
-     * @param decimal $longitude
+     * @param float $longitude
+     * @return Place
      */
     public function setLongitude($longitude)
     {
@@ -278,7 +284,7 @@ class Place extends EntityInfos
     }
 
     /**
-     * @return decimal
+     * @return float
      */
     public function getLatitude()
     {
@@ -286,7 +292,8 @@ class Place extends EntityInfos
     }
 
     /**
-     * @param decimal $latitude
+     * @param float $latitude
+     * @return Place
      */
     public function setLatitude($latitude)
     {
@@ -305,6 +312,7 @@ class Place extends EntityInfos
 
     /**
      * @param string $phone
+     * @return Place
      */
     public function setPhone($phone)
     {
@@ -323,6 +331,7 @@ class Place extends EntityInfos
 
     /**
      * @param string $mobile
+     * @return Place
      */
     public function setMobile($mobile)
     {
@@ -341,6 +350,7 @@ class Place extends EntityInfos
 
     /**
      * @param string $email
+     * @return Place
      */
     public function setEmail($email)
     {
@@ -359,6 +369,7 @@ class Place extends EntityInfos
 
     /**
      * @param string $website
+     * @return Place
      */
     public function setWebsite($website)
     {
@@ -377,6 +388,7 @@ class Place extends EntityInfos
 
     /**
      * @param string $facebook
+     * @return Place
      */
     public function setFacebook($facebook)
     {
