@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Ob\HighchartsBundle\Highcharts\Highchart;
@@ -20,9 +21,10 @@ class AdminController extends Controller
     {
         $stats = [];
 
+        $infoProvider = $this->container->get('infoProvider');
         $em = $this->getDoctrine()->getManager();
 
-        $stats['number_of_users'] = $em->getRepository('AppBundle:User')->getNumberOfUsers();
+        $stats['number_of_users'] = $infoProvider->getUsers();
         $stats['number_of_places'] = $em->getRepository('AppBundle:Place')->getNumberOfPlaces();
         $stats['number_of_menus'] = $em->getRepository('AppBundle:Menu')->getNumberOfMenus();
         $stats['number_of_meals'] = $em->getRepository('AppBundle:Meal')->getNumberOfMeals();

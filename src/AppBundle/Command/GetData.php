@@ -1,34 +1,29 @@
 <?php
 namespace AppBundle\Command;
 
-use Doctrine\ORM\EntityManager;
-use AppBundle\Entity\Place;
-use AppBundle\Entity\Meal;
+// use Doctrine\ORM\EntityManager;
+// use AppBundle\Entity\Place;
+// use AppBundle\Entity\Meal;
 // use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use AppBundle\Service\InfoProvider;
 
 class GetData
 {
-    private $em;
 
-    public function __construct(EntityManager $em){
-        $this->em = $em;
-    }
-
-    public function getPlaces()
+    public function getPlaces(InfoProvider $infoProvider)
     {
 
-        $places = $this->em->getRepository('AppBundle:Place')->findAll();
+        $places = $infoProvider->getPlaces();
 
         if ($places) {
             return $places;
         }
     }
 
-    public function getMeals()
+    public function getMeals(InfoProvider $infoProvider)
     {
 
-        $meals = $this->em->getRepository('AppBundle:Meal')->findAll();
-
+        $meals = $infoProvider->getMeals();
         if ($meals) {
             return $meals;
         }
