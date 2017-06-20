@@ -11,11 +11,6 @@ use Ivory\GoogleMap\Map;
 use Ivory\GoogleMap\MapTypeId;
 use Ivory\GoogleMap\Overlay\Marker;
 use Ivory\GoogleMap\Base\Coordinate;
-use Ivory\GoogleMap\Service\Geocoder\GeocoderService;
-use Ivory\GoogleMap\Service\Serializer\SerializerBuilder;
-use Http\Adapter\Guzzle6\Client;
-use Http\Message\MessageFactory\GuzzleMessageFactory;
-use Ivory\GoogleMap\Service\Geocoder\Request\GeocoderAddressRequest;
 use AppBundle\Entity\Meal;
 use AppBundle\Form\PlaceType;
 use AppBundle\Entity\OrderGroup;
@@ -57,28 +52,16 @@ class PlaceController extends Controller
         $map->setCenter(new Coordinate(44.841767, -0.574961));
 
         // Sets the zoom
-        $map->setMapOption('zoom', 16);
+        $map->setMapOption('zoom', 14);
 
         foreach ($places as $place) {
-            $map->getOverlayManager()->addMarker(new Marker(new Coordinate($place->getLatitude(), $place->getLongitude())));
+            if ($place->getLongitude() && $place->getLatitude()) {
+                $map->getOverlayManager()->addMarker(new Marker(new Coordinate($place->getLatitude(), $place->getLongitude())));
+            }
         }
 
         $map->setStaticOption('maptype', MapTypeId::HYBRID);
         $map->setStylesheetOption('width', '100%');
-
-
-        /***********************************************
-         ************ Get address informations *********
-         **********************************************/
-
-        /*$geocoder = new GeocoderService(
-            new Client(),
-            new GuzzleMessageFactory(),
-            SerializerBuilder::create()
-        );
-
-        $request = new GeocoderAddressRequest('4 - 6 Cours de l\'Intendance, Hôtel Pichon, 33000 Bordeaux');
-        $response = $geocoder->geocode($request);*/
 
         return $this->render('place/index.html.twig', array(
             'pagination' => $pagination,
@@ -99,7 +82,6 @@ class PlaceController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($place);
 
