@@ -15,3 +15,8 @@ services:
     getData:
         class: AppBundle\Command\GetData
         arguments: ["@doctrine.orm.entity_manager"]
+    faker.provider.place_provider:
+        class: AppBundle\Provider\PlaceProvider
+        arguments: ["@faker.generator"]
+        tags:
+            - { name: bazinga_faker.provider }
