@@ -19,6 +19,69 @@ class PlaceProvider extends \Faker\Provider\Base
     return 'France';
   }
 
+  public function restaurant()
+  {
+    $restaurants = [
+        'L\'Entrecôte',
+        'Peponne',
+        'Le Fuxia',
+        'Le café Napoléon 3',
+        'Jamon Jamon',
+        'Tante Charlotte',
+        'La Terrasse Saint-Pierre',
+        'L\'assiette du vieux Saint-Pierre',
+        'West Coast Burger',
+        'Le Petit Commerce',
+        'Chez Jean',
+        'Le bar du boucher',
+        'Le Cosmopolis',
+        'Chat noir, chat vert',
+        'Edmond Burger',
+        'La Brasserie du passage',
+        'Le C-Yusha',
+        'L\'Artigiano Mangiatutto',
+        'Yes Mum fish and chips',
+        'Le Catering',
+        'Le Santosha',
+        'Le Kokomo',
+        'Le Moshi Moshi',
+        'Books And Coffee',
+        'Le Cagette',
+        'Le Garage',
+        'Osteria da Luigi',
+        'Le Saint Georges',
+        'Upper Burger',
+        'Le Karma',
+        'Le Café Japonais',
+        'Le Croc Loup',
+        'La Brasserie Bordelaise',
+        'La Raclette',
+        'Le Plana',
+        'Chez Dude',
+        'La Trattoria',
+        'L\'Incontournable',
+        'L\'Air de Famille',
+        'Le K baroque',
+        'Restaurant Koh-i-noor',
+        'Le Verre Ô Vin',
+        'Le Clos d\'Augusta',
+        'Cyusha',
+        'Le Pavillon des Boulevards',
+        'Le Cabanon Marin',
+        'Le Rajwal',
+        'Fleur de Cèdre',
+        'Le Wine Bar',
+        'L\'Exploit',
+        'Trendy place',
+        'Petit Mignon',
+        'L\'Olicia',
+        'Le M de Monbadon',
+        'La Table Bordelaise'
+    ];
+
+    return $restaurants[array_rand($restaurants)];
+  }
+
   public function streetAddress()
   {
     $addresses = [
