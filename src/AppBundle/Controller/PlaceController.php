@@ -9,8 +9,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Place;
 use Ivory\GoogleMap\Map;
 use Ivory\GoogleMap\MapTypeId;
-use Ivory\GoogleMap\Overlay\Marker;
 use Ivory\GoogleMap\Base\Coordinate;
+use Ivory\GoogleMap\Overlay\Marker;
+use Ivory\GoogleMap\Overlay\InfoWindow;
+use Ivory\GoogleMap\Overlay\InfoWindowType;
 use AppBundle\Entity\Meal;
 use AppBundle\Form\PlaceType;
 use AppBundle\Entity\OrderGroup;
@@ -56,7 +58,9 @@ class PlaceController extends Controller
 
         foreach ($places as $place) {
             if ($place->getLongitude() && $place->getLatitude()) {
-                $map->getOverlayManager()->addMarker(new Marker(new Coordinate($place->getLatitude(), $place->getLongitude())));
+                $marker = new Marker(new Coordinate($place->getLatitude(), $place->getLongitude()));
+                $marker->setInfoWindow(new InfoWindow($place->getName()));
+                $map->getOverlayManager()->addMarker($marker);
             }
         }
 
