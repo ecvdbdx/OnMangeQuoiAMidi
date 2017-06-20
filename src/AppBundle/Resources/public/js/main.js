@@ -16,7 +16,7 @@ function copyButton(token) {
     var button = document.createElement("button");
     $(button).text('Copier le lien')
                .addClass('btn btn-primary copy');
-    $(button).appendTo('form[name=order_group]');
+    $(button).appendTo('form[name=appbundle_ordergroup]');
 
     $(button).click(function(e) {
         e.preventDefault();
@@ -47,11 +47,11 @@ $(".btn-test").click(function(e){
 
     var placeId = $('input[name="place"]').val();
 
-    var expirationDateDay = $('select[name="order_group[expirationDate][date][day]"]').val();
-    var expirationDateMonth = $('select[name="order_group[expirationDate][date][month]"]').val();
-    var expirationDateYear = $('select[name="order_group[expirationDate][date][year]"]').val();
-    var expirationDateHour = $('select[name="order_group[expirationDate][time][hour]"]').val();
-    var expirationDateMinute = $('select[name="order_group[expirationDate][time][minute]"]').val();
+    var expirationDateDay = $('select[name="appbundle_ordergroup[expirationDate][date][day]"]').val();
+    var expirationDateMonth = $('select[name="appbundle_ordergroup[expirationDate][date][month]"]').val();
+    var expirationDateYear = $('select[name="appbundle_ordergroup[expirationDate][date][year]"]').val();
+    var expirationDateHour = $('select[name="appbundle_ordergroup[expirationDate][time][hour]"]').val();
+    var expirationDateMinute = $('select[name="appbundle_ordergroup[expirationDate][time][minute]"]').val();
 
     var expirationDate = expirationDateYear + '-' + expirationDateMonth + '-' + expirationDateDay + 'T' + expirationDateHour + ':' + expirationDateMinute + ':00';
 
