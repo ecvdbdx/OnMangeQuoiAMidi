@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 rm -Rf web/phpmetrics;
-phpmetrics --report-html=web/phpmetrics src;
+./vendor/phpmetrics/phpmetrics/bin/phpmetrics --report-html=web/phpmetrics src;
