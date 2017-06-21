@@ -16,7 +16,7 @@ before_deploy:
 - ssh-add /tmp/deploy_rsa
 deploy:
 - provider: script
-  script: ssh $omqam_user@$omqam_host ./scripts/fetchResetAndClearCache.sh
+  script: ssh -o "StrictHostKeyChecking=no" $omqam_user@$omqam_host ./scripts/fetchResetAndClearCache.sh
   skip_cleanup: true
   on:
     branch: master
