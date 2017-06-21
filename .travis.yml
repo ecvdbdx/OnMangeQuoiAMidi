@@ -1,4 +1,6 @@
 language: php
+node:
+- "8"
 php:
 - 7.0
 before_script:
@@ -7,6 +9,9 @@ before_script:
 - php bin/console doctrine:database:create --env=test
 - php bin/console doctrine:schema:create --env=test
 - php bin/console faker:populate --env=test
+- npm i
+- npm rebuild node-sass;
+- npm run build
 script:
 - "./vendor/bin/phpunit"
 before_deploy:
@@ -16,7 +21,7 @@ before_deploy:
 - ssh-add /tmp/deploy_rsa
 deploy:
 - provider: script
-  script: ssh -o "StrictHostKeyChecking=no" $omqam_user@$omqam_host ./scripts/fetchResetAndClearCache.sh
+  script: ./scripts/deploy.sh
   skip_cleanup: true
   on:
     branch: master
