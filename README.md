@@ -2,7 +2,7 @@
 
 Un projet en Symfony 3.
 
-![https://travis-ci.org/ecvdbdx1617/OnMangeQuoiAMidi.svg?branch=master]()
+<img src="https://travis-ci.org/ecvdbdx1617/OnMangeQuoiAMidi.svg?branch=master" alt="build">
 
 ## Prerequisites
     
