@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>Order at {{ orderGroup.place.name }} by {{orderGroup.user.username}}</h1>
+<h1>Commande à {{ orderGroup.place.name }} par {{orderGroup.user.username}}</h1>
 <div class="row">
   <div class="col-lg-6">
-    <h3>Selection</h3>
+    <h3>Commande</h3>
     <form method="post" action="{{path('order_user_create')}}" class="form-inline">
-      <h4>Meals</h4>
+      <h4>Plats</h4>
       {% for meal in orderGroup.place.meals %}
       <div class="form-group row">
         <label for="meal_{{ meal.id }}" class="control-label col-lg-8"> {{ meal.name }} </label>

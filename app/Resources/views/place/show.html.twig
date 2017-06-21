@@ -3,11 +3,11 @@
 {% block body %}
     <div class="row row-right">
         <a href="{{ path('place_index') }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-th-list"></i> Back to the list
+            <i class="glyphicon glyphicon-th-list"></i> Retour à la liste
         </a>
     </div>
 
-    <h1>Place</h1>
+    <h1>Détails</h1>
 
     <table class="table table-striped">
         <tbody>
@@ -16,7 +16,7 @@
             <td>{{ place.id }}</td>
         </tr>
         <tr>
-            <th>Name</th>
+            <th>Nom</th>
             <td>{{ place.name }}</td>
         </tr>
         <tr>
@@ -24,23 +24,23 @@
             <td>{{ place.description }}</td>
         </tr>
         <tr>
-            <th>City</th>
+            <th>Ville</th>
             <td>{{ place.city }}</td>
         </tr>
         <tr>
-            <th>Street</th>
+            <th>Rue</th>
             <td>{{ place.street }}</td>
         </tr>
         <tr>
-            <th>Zip Code</th>
+            <th>Code postal</th>
             <td>{{ place.zipCode }}</td>
         </tr>
         <tr>
-            <th>Country</th>
+            <th>Pays</th>
             <td>{{ place.country }}</td>
         </tr>
         <tr>
-            <th>Phone</th>
+            <th>Téléphone</th>
             <td>{{ place.phone }}</td>
         </tr>
         <tr>
@@ -52,7 +52,7 @@
             <td>{{ place.email }}</td>
         </tr>
         <tr>
-            <th>Website</th>
+            <th>Site web</th>
             <td>{{ place.website }}</td>
         </tr>
         <tr>
@@ -60,7 +60,7 @@
             <td>{{ place.facebook }}</td>
         </tr>
         <tr>
-            <th>Meals</th>
+            <th>Plats</th>
             <td>
                 <ul>
                     {% for meal in place.meals %}
@@ -103,15 +103,15 @@
 
     {% if is_granted("ROLE_ADMIN") %}
         <a href="{{ path('place_edit', { 'place': place.id }) }}" class="btn btn-primary">
-            <i class="glyphicon glyphicon-edit"></i> Edit
+            <i class="glyphicon glyphicon-edit"></i> Editer
         </a>
 
         <a href="{{ path('place_meal_new', { 'place': place.id }) }}" class="btn btn-primary">
-            <i class="glyphicon glyphicon-plus-sign"></i> New Meal
+            <i class="glyphicon glyphicon-plus-sign"></i> Nouveau plat
         </a>
 
         <a href="{{ path('place_menu_new', { 'place': place.id }) }}" class="btn btn-primary">
-            <i class="glyphicon glyphicon-plus-sign"></i> New Menu
+            <i class="glyphicon glyphicon-plus-sign"></i> Nouveau Menu
         </a>
 
         {{ form_start(delete_form, { 'attr': {'class': 'd-ib'} }) }}
@@ -121,11 +121,11 @@
 
     <br>
     {{ form_start(formOrderGroup) }}
-        <h3>Vous aussi, générez votre token.</h3>
+        <h3>Générer un jeton</h3>
         {{ form_widget(formOrderGroup) }}
         <input type="submit" class="btn btn-primary btn-test" value="Generate token bitch"/>
         <div class="tokenInfo"></div>
         <input type="hidden" value="{{ place.id }}" name="place">
     {{ form_end(formOrderGroup) }}
-    <a href="{{ path('place_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Back to the list</a>
+    <a href="{{ path('place_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Retour à la liste</a>
 {% endblock %}
