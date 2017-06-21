@@ -53,20 +53,32 @@ class OrderGroupController extends Controller
 
             $place_id = $request->get('place_id');
             $expiration_date = $request->get('expiration_date');
+            $expiration_date = str_replace('/', '-', $expiration_date);
             $formatted_expiration_date = new \DateTime($expiration_date, new \DateTimeZone('Europe/Paris'));
 
-            $place = $em->getRepository('AppBundle:Place')->find($place_id);
+            $now = new \DateTime("now", new \DateTimeZone('Europe/Paris'));
+            $now->modify('+2 hour');
 
-            $token = uniqid();
+            if ($formatted_expiration_date >= $now) {
 
-            $orderGroup->setToken($token);
-            $orderGroup->setExpirationDate($formatted_expiration_date);
-            $orderGroup->setPlace($place);
-            $orderGroup->setUser($user);
-            $em->persist($orderGroup);
-            $em->flush();
+              $place = $em->getRepository('AppBundle:Place')->find($place_id);
 
-            return new JsonResponse($token);
+              $token = uniqid();
+
+              $orderGroup->setToken($token);
+              $orderGroup->setExpirationDate($formatted_expiration_date);
+              $orderGroup->setPlace($place);
+              $orderGroup->setUser($user);
+              $em->persist($orderGroup);
+              $em->flush();
+
+              return new JsonResponse($token);
+
+            }
+            else {
+              return new JsonResponse('EH NON !');
+            }
+            
         } else {
             return new JsonResponse(false);
         }

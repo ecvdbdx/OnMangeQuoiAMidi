@@ -139,3 +139,14 @@
 
     <a href="{{ path('place_index') }}" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i> Retour à la liste</a>
 {% endblock %}
+
+{% block javascripts %}
+<script>
+$(document).ready(function(){ 
+    $('.datetimepicker').datetimepicker({
+        dateFormat: 'yy-mm-dd H:i',
+        minDate:'0',
+    });
+});
+</script>
+{% endblock %}
