@@ -22,7 +22,7 @@ function copyButton(token) {
         e.preventDefault();
 
         var aux = document.createElement("input");
-        aux.setAttribute("value", "/orderGroup/order?uid=" + token);
+        aux.setAttribute("value", "/orderGroup/order/" + token);
         document.body.appendChild(aux);
         aux.select();
         document.execCommand("copy");
