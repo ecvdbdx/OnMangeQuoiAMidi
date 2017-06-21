@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Place creation</h1>
+    <h1>Créer un restaurant</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
 
         <input type="submit" value="Create" class="btn btn-primary"/>
-        <a href="{{ path('place_index') }}" class="btn btn-default">Back to the list</a>
+        <a href="{{ path('place_index') }}" class="btn btn-default">Retour à la liste</a>
 
     {{ form_end(form) }}
 {% endblock %}

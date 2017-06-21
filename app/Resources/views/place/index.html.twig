@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Place list</h1>
+    <h1>Liste des restaurants</h1>
 
     {{ ivory_google_map(map) }}
     {{ ivory_google_api([map]) }}
@@ -19,10 +19,10 @@
                             <p>{{ place.description }}</p>
                             <p>
                                 <a href="{{ path('place_show', { 'place': place.id }) }}" class="btn btn-primary"
-                                   role="button">Show</a>
+                                   role="button">Voir</a>
                                 {% if is_granted("ROLE_ADMIN") %}
                                     <a href="{{ path('place_edit', { 'place': place.id }) }}" class="btn btn-default"
-                                       role="button">Edit</a>
+                                       role="button">Editer</a>
                                 {% endif %}
                             </p>
                         </div>
@@ -37,7 +37,7 @@
 
     {% if is_granted("ROLE_ADMIN") %}
         <a href="{{ path('place_new') }}" class="btn btn-primary btn-lg btn-block">
-            <i class="glyphicon glyphicon-plus-sign"></i> Create a new entry
+            <i class="glyphicon glyphicon-plus-sign"></i> Créer une commande
         </a>
     {% endif %}
 {% endblock %}
