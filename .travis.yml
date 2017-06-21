@@ -1,6 +1,4 @@
 language: php
-node_js:
-- "7"
 php:
 - 7.0
 before_script:
@@ -15,7 +13,6 @@ before_script:
 - npm install
 - npm --version
 - node --version
-- npm list --depth=0
 - npm rebuild node-sass;
 - npm run build
 script:
