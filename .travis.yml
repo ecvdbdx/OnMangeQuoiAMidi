@@ -13,7 +13,6 @@ before_script:
 - npm install
 - npm --version
 - node --version
-- npm rebuild node-sass;
 - npm run build
 script:
 - "./vendor/bin/phpunit"
