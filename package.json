@@ -2,7 +2,8 @@
   "name": "omqam",
   "homepage": "https://github.com/OnMangeQuoiAMidi",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
