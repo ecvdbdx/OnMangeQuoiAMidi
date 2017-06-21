@@ -2,7 +2,7 @@
 
 Un projet en Symfony 3.
 
-<img src="https://travis-ci.org/ecvdbdx1617/OnMangeQuoiAMidi.svg?branch=master" alt="build">
+<a href="https://travis-ci.org/ecvdbdx1617/OnMangeQuoiAMidi/" title="Lien vers Travis"><img src="https://travis-ci.org/ecvdbdx1617/OnMangeQuoiAMidi.svg?branch=master" alt="build"></a>
 
 ## Prerequisites
     
