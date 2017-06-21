@@ -1,12 +1,17 @@
-ECV PHP Project - Symfony3 (Docker)
+# On Mange Quoi À Midi
 
-# Includes
+Un projet en Symfony 3.
+
+![https://travis-ci.org/ecvdbdx1617/OnMangeQuoiAMidi.svg?branch=master]()
+
+## Prerequisites
     
 - Mysql 5.7.15
 - Nginx 1.9.1
 - PHP 7.0.7
+- Node 7+
 
-# Installation
+## Installation
     
 1. Clone this repository
 1. Install and launch the containers
@@ -34,16 +39,16 @@ ECV PHP Project - Symfony3 (Docker)
     ```
 1. Launch the browser on `symfony.dev/app_dev.php`
     
-# Development
+## Development
 
-## Populating & resetting the database
+### Populating & resetting the database
 
-### Reset database
+#### Reset database
 
 `docker exec -it symfony_php php bin/console doctrine:schema:drop --force`
 `docker exec -it symfony_php php bin/console doctrine:schema:create`
 
-### Generate fixtures
+#### Generate fixtures
 
 Fake datas (fixtures) generated with the [Bazinga Faker Bundle](https://github.com/willdurand/BazingaFakerBundle/)
 
@@ -59,7 +64,7 @@ In order to add fixtures into the database to work with, follow these steps :
 
 > NB : Entries are INSERTED into database, your previous entries won't be erased
 
-### Add fixtures
+#### Add fixtures
 
 Fixtures are declared in `app/config/config_dev.yml` under the bazinga_faker entry.
 We first declare the ORM used and the location (locale) to get the datas in the correct language.
@@ -78,7 +83,7 @@ AppBundle\Entity\Place:
 
 [See all available methods](https://github.com/fzaninotto/Faker#formatters)
 
-## Front-End
+### Front-End
     
 If you need to develop on the front-end:
 
@@ -94,7 +99,7 @@ If you need to develop on the front-end:
 Now when you update the style.scss or app.js file, the bundled files are updated automatically by Gulp.
 
 
-## Add remote PHP interpreter in PHPStorm (optional)
+### Add remote PHP interpreter in PHPStorm (optional)
 
 In PHPStorm go to Settings ->  Languages & Frameworks -> PHP
 
@@ -104,7 +109,7 @@ Add a new remote interpreter using the following SSH credentials
     . user: root
     . password: lbmonkey
 
-## Generate PHPMetrics report
+### Generate PHPMetrics report
 
 ```
 ./scripts/phpmetrics;
