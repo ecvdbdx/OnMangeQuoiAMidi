@@ -48,3 +48,4 @@ security:
         - { path: ^/.*/edit, role: ROLE_ADMIN }
         - { path: ^/.*/new, role: ROLE_ADMIN }
         - { path: ^/.*/delete, role: ROLE_ADMIN }
+        - { path: ^/orderGroup/, role: ROLE_USER }
