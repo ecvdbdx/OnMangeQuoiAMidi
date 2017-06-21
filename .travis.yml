@@ -7,6 +7,9 @@ before_script:
 - php bin/console doctrine:database:create --env=test
 - php bin/console doctrine:schema:create --env=test
 - php bin/console faker:populate --env=test
+script:
+- "./vendor/bin/phpunit"
+before_deploy:
 - . $HOME/.nvm/nvm.sh
 - nvm install 7
 - nvm use 7
@@ -14,9 +17,6 @@ before_script:
 - npm --version
 - node --version
 - npm run build
-script:
-- "./vendor/bin/phpunit"
-before_deploy:
 - openssl aes-256-cbc -K $encrypted_caea40e6cd40_key -iv $encrypted_caea40e6cd40_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/deploy_rsa
