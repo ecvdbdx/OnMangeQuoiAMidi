@@ -9,7 +9,10 @@ before_script:
 - php bin/console doctrine:database:create --env=test
 - php bin/console doctrine:schema:create --env=test
 - php bin/console faker:populate --env=test
-- npm i
+- . $HOME/.nvm/nvm.sh
+- nvm install stable
+- nvm use stable
+- npm install
 - npm --version
 - node --version
 - npm list --depth=0
