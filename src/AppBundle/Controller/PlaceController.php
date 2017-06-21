@@ -112,7 +112,10 @@ class PlaceController extends Controller
         $delete_form = $this->createDeleteForm($place);
 
         $orderGroup = new OrderGroup();
-        $formOrder = $this->createForm(OrderGroupType::class, $orderGroup);
+        $formOrder = $this->createForm(OrderGroupType::class, $orderGroup, array(
+            'action' => $this->generateUrl('create_order_nojs'),
+            'method' => 'POST',
+        ));
         $formOrder->handleRequest($request);
 
         return $this->render('place/show.html.twig', array(

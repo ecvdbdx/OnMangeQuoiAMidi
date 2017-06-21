@@ -133,3 +133,22 @@ form[name=order_group] h3 {
 [id=map_canvas] {
   margin-bottom: 35px;
 }
+
+.tokenTroll{
+  transition: all 0.4s ease;
+  position: relative;
+  animation-duration: 1s;
+  animation-name: troll;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes troll {
+  from {
+    left: 0px;
+  }
+
+  to {
+    left: 300px;
+  }
+}

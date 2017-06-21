@@ -2,6 +2,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\OrderGroup;
+use AppBundle\Form\OrderGroupType;
+use Doctrine\Common\Persistence\ObjectManager;
 use Http\Discovery\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,7 +43,7 @@ class OrderGroupController extends Controller
      * Creates a command
      *
      * @Route("/orderz", name="create_order")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function ajaxAction(Request $request) {
         $user = $this->getUser();
@@ -69,4 +71,56 @@ class OrderGroupController extends Controller
             return new JsonResponse(false);
         }
     }
+
+    /**
+     * Creates a command if no js
+     *
+     * @Route("/ordernojs", name="create_order_nojs")
+     * @Method("POST")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function createOrderGroupAction(Request $request) {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        if($user) {
+            $orderGroup = new OrderGroup();
+
+            $place_id = $request->get('place');
+            $expiration_date = $_POST['appbundle_ordergroup']['expirationDate'];
+            $formatted_expiration_date = new \DateTime($expiration_date, new \DateTimeZone('Europe/Paris'));
+
+            $place = $em->getRepository('AppBundle:Place')->find($place_id);
+
+            $token = uniqid();
+            $tokenPath = 'http:'.$this->generateUrl('order_group_show', ['token' => $token], 3);
+
+            $orderGroup->setToken($token);
+            $orderGroup->setExpirationDate($formatted_expiration_date);
+            $orderGroup->setPlace($place);
+            $orderGroup->setUser($user);
+            $em->persist($orderGroup);
+            $em->flush();
+
+            $delete_form = $this->createFormBuilder()
+                ->setAction($this->generateUrl('place_delete', array('place' => $place->getId())))
+                ->setMethod('DELETE')
+                ->getForm();
+
+            $orderGroup = new OrderGroup();
+            $formOrder = $this->createForm(OrderGroupType::class, $orderGroup, array(
+                'action' => $this->generateUrl('create_order_nojs'),
+                'method' => 'POST',
+            ));
+            $formOrder->handleRequest($request);
+
+            return $this->render('place/show.html.twig', array(
+                'place' => $place,
+                'delete_form' => $delete_form->createView(),
+                'formOrderGroup' => $formOrder->createView(),
+                'tokenPath' => $tokenPath
+            ));
+        }
+    }
+
 }

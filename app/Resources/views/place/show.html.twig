@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if token is defined %}
+        <h2>Voilà tout de même votre token </h2>
+        <p class="tokenTroll">{{ tokenPath }}</p>
+    {% else %}
+        <p>Oups, il y a eu une erreur lors de la génération de votre token</p>
+    {% endif %}
     <div class="row row-right">
         <a href="{{ path('place_index') }}" class="btn btn-default">
             <i class="glyphicon glyphicon-th-list"></i> Retour à la liste
