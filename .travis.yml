@@ -1,5 +1,5 @@
 language: php
-node:
+node_js:
 - "7"
 php:
 - 7.0
