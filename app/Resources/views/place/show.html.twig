@@ -65,7 +65,7 @@
                 <ul>
                     {% for meal in place.meals %}
                         <li>
-                            {{ meal.name }}
+                            {{ meal.name }} - {{ meal.price }} €
                             {% if is_granted("ROLE_ADMIN") %}
                                 <a href="{{ path('meal_delete', { 'place': place.id, 'meal': meal.id }) }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -120,7 +120,7 @@
     {% endif %}
 
     <br>
-    
+
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         {{ form_start(formOrderGroup) }}
             <h3>Générer un jeton</h3>

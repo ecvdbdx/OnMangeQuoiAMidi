@@ -38,11 +38,6 @@ bazinga_faker:
     orm: doctrine
     locale: fr_FR
     entities:
-        AppBundle\Entity\User:
-            number: 5
-            custom_formatters:
-                username: { method: firstName }
-                email: { method: email }
         AppBundle\Entity\Place:
             number: 30
             custom_formatters:
@@ -59,17 +54,18 @@ bazinga_faker:
                 email: { method: safeEmail }
                 website: { method: url }
                 facebook: { method: url }
-                modifierUserId: { method: randomFloat, parameters: [ 0, 1, 5 ]}
+                modifierUserId: { method: randomFloat, parameters: [ 0, 1, 3 ]}
         AppBundle\Entity\Meal:
             number: 100
             custom_formatters:
                 name: { method: company }
-                modifierUserId: { method: randomFloat, parameters: [ 0, 1, 5 ]}
+                price: { method: randomFloat, parameters: [2, 3, 12] }
+                modifierUserId: { method: randomFloat, parameters: [ 0, 1, 3 ]}
         AppBundle\Entity\Menu:
             number: 10
             custom_formatters:
                 name: { method: company }
-                modifierUserId: { method: randomFloat, parameters: [ 0, 1, 5 ]}
+                modifierUserId: { method: randomFloat, parameters: [ 0, 1, 3 ]}
 
 ivory_google_map:
     map:

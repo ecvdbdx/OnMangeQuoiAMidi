@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class MealType extends AbstractType
 {
@@ -16,9 +17,10 @@ class MealType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('price', NumberType::class, array('scale' => 2))
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
