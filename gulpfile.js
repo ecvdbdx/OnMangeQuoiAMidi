@@ -12,7 +12,8 @@ var fontPaths = [
 var jsFiles = [
     './node_modules/jquery/dist/jquery.js',
     './node_modules/bootstrap-sass/assets/javascript/bootstrap.js',
-    './src/AppBundle/Resources/public/js/main.js'
+    './src/AppBundle/Resources/public/js/main.js',
+    './src/AppBundle/Resources/public/js/jquery.datetimepicker.full.js'
 ];
 
 gulp.task('sass', function () {
@@ -31,7 +32,6 @@ gulp.task('sass', function () {
 gulp.task('js', function () {
     return gulp.src(jsFiles)
         .pipe($.concat('build.js'))
-        .pipe($.uglify())
         .pipe(gulp.dest('./src/AppBundle/Resources/public/js/'))
 });
 
