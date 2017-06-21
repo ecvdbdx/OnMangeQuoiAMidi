@@ -8,8 +8,8 @@ before_script:
 - php bin/console doctrine:schema:create --env=test
 - php bin/console faker:populate --env=test
 - . $HOME/.nvm/nvm.sh
-- nvm install stable
-- nvm use stable
+- nvm install 7
+- nvm use 7
 - npm install
 - npm --version
 - node --version
