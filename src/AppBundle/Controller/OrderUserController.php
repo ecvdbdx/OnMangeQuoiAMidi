@@ -58,7 +58,7 @@ class OrderUserController extends Controller
 
         $em->flush();
 
-        return $this->redirectToRoute('order_group_show', array('uid' => $data['order_group']));
+        return $this->redirectToRoute('order_group_show', array('token' => $data['order_group']));
     }
 
     /**
