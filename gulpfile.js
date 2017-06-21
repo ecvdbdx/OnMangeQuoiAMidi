@@ -44,3 +44,5 @@ gulp.task('default', ['sass', 'js', 'fonts'], function () {
     gulp.watch(['src/AppBundle/Resources/public/scss/**/*.scss'], ['sass']);
     gulp.watch(['src/AppBundle/Resources/public/js/main.js'], ['js']);
 });
+
+gulp.task('build', ['sass', 'js', 'fonts']);
