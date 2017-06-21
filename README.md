@@ -2,7 +2,12 @@
 
 Un projet en Symfony 3.
 
-<a href="https://travis-ci.org/ecvdbdx1617/OnMangeQuoiAMidi/" title="Lien vers Travis"><img src="https://travis-ci.org/ecvdbdx1617/OnMangeQuoiAMidi.svg?branch=master" alt="build"></a>
+[![Travis Build](https://travis-ci.org/ecvdbdx1617/OnMangeQuoiAMidi.svg?branch=master)](https://travis-ci.org/ecvdbdx1617/OnMangeQuoiAMidi/)
+[![GitHub issues](https://img.shields.io/github/issues/ecvdbdx1617/OnMangeQuoiAMidi.svg)](https://github.com/ecvdbdx1617/OnMangeQuoiAMidi/issues)
+[![GitHub forks](https://img.shields.io/github/forks/ecvdbdx1617/OnMangeQuoiAMidi.svg)](https://github.com/ecvdbdx1617/OnMangeQuoiAMidi/network)
+[![GitHub stars](https://img.shields.io/github/stars/ecvdbdx1617/OnMangeQuoiAMidi.svg)](https://github.com/ecvdbdx1617/OnMangeQuoiAMidi/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/ecvdbdx1617/OnMangeQuoiAMidi/master/LICENSE)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/ecvdbdx1617/OnMangeQuoiAMidi/.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
 
 ## Prerequisites
     
