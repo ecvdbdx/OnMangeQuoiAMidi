@@ -10,6 +10,9 @@ before_script:
 - php bin/console doctrine:schema:create --env=test
 - php bin/console faker:populate --env=test
 - npm i
+- npm --version
+- node --version
+- npm list --depth=0
 - npm rebuild node-sass;
 - npm run build
 script:
