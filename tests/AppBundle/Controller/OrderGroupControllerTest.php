@@ -22,7 +22,7 @@ class OrderGroupControllerTest extends WebTestCase
         $route = $this->client->getContainer()->get('router')->generate('order_group_show', ['token' => '5947d492a52cc'], false);
 
         $crawler = $this->client->request('GET', $route);
-        $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
 
         // TODO If you want to test a specific OrderGroup, you must be sure it exists first
         /*$form = $crawler->filter('form')->form();
