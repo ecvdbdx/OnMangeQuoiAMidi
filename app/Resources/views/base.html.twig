@@ -40,6 +40,12 @@
                             <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
                         {% endif %}
                     </li>
+                    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li role="presentation"
+                            class="{% if app.request.get('_route') == 'fos_user_registration_register' %}active{% endif %}">
+                            <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </nav>
             <h3 class="text-muted site-title">On mange quoi à midi&nbsp;?</h3>
