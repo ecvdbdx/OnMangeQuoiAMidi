@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% if token is defined %}
+    {% if tokenPath is defined %}
         <h2>Voilà tout de même votre token </h2>
         <p class="tokenTroll">{{ tokenPath }}</p>
     {% endif %}

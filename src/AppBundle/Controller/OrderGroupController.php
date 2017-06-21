@@ -107,6 +107,7 @@ class OrderGroupController extends Controller
             $token = uniqid();
             $tokenPath = 'http:'.$this->generateUrl('order_group_show', ['token' => $token], 3);
 
+
             $orderGroup->setToken($token);
             $orderGroup->setExpirationDate($formatted_expiration_date);
             $orderGroup->setPlace($place);
