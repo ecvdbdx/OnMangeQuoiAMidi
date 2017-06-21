@@ -1,6 +1,6 @@
 function tokenSuccess(success, data) {
     var div = $('.tokenInfo');
-    if (success == true) {
+    if (success === true) {
         div.html("Votre token : " + data);
         div.addClass('success');
         div.removeClass('failed');
@@ -46,14 +46,7 @@ $(".btn-test").click(function(e){
     $('.copy').remove();
 
     var placeId = $('input[name="place"]').val();
-
-    var expirationDateDay = $('select[name="appbundle_ordergroup[expirationDate][date][day]"]').val();
-    var expirationDateMonth = $('select[name="appbundle_ordergroup[expirationDate][date][month]"]').val();
-    var expirationDateYear = $('select[name="appbundle_ordergroup[expirationDate][date][year]"]').val();
-    var expirationDateHour = $('select[name="appbundle_ordergroup[expirationDate][time][hour]"]').val();
-    var expirationDateMinute = $('select[name="appbundle_ordergroup[expirationDate][time][minute]"]').val();
-
-    var expirationDate = expirationDateYear + '-' + expirationDateMonth + '-' + expirationDateDay + 'T' + expirationDateHour + ':' + expirationDateMinute + ':00';
+    var expirationDate = $('input[name="appbundle_ordergroup[expirationDate]"]').val();
 
     $.get("../orderGroup/orderz", {place_id: placeId, expiration_date: expirationDate} , function(data, status) {
         if (data) {

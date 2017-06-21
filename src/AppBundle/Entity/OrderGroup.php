@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,7 +26,14 @@ class OrderGroup extends EntityInfos
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="expiration_date", type="datetimetz")
+     * @ORM\Column(name="expiration_date", type="datetime")
+     *
+     * @Assert\Length(
+     *      min = 16,
+     *      max = 16,
+     *      minMessage = "Date incorrect",
+     *      maxMessage = "Date incorrect"
+     * )
      */
     private $expirationDate;
 
