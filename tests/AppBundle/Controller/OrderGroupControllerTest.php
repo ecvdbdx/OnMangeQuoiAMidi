@@ -22,7 +22,6 @@ class OrderGroupControllerTest extends WebTestCase
     {
 
       $testUser = $this->client->getContainer()->get('testUser');
-      $testUser->removeTestClient($this->client);
 
       $this->client = $testUser->createAuthorizedClient();
 
