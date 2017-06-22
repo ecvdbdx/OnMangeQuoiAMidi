@@ -47,7 +47,7 @@
         "ob/highcharts-bundle": "^1.5",
         "beberlei/doctrineextensions": "^1.0",
         "phpmetrics/phpmetrics": "^2.2",
-        "cocur/slugify": "^2.5"
+        "cocur/slugify": "^2.5",
         "phpmetrics/phpmetrics": "^2.2",
         "friendsofsymfony/jsrouting-bundle": "^1.6"
     },
