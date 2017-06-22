@@ -71,7 +71,12 @@
 
     {% block footer %}
         <footer class="footer">
-            <p>&copy; 2016 On Mange Quoi À Midi</p>
+            <p>&copy; {{ "now"|date("Y") }} On Mange Quoi À Midi</p>
+            <p>
+                {% if app.environment == 'PROD' %}
+                    ${latest_commit}
+                {% endif %}
+            </p>
         </footer>
     {% endblock %}
 
