@@ -43,7 +43,7 @@ class OrderGroupControllerTest extends WebTestCase
         'expiration_date' => $date->format('Y-m-d\TH:i')
       );
 
-      $route = $this->client->getContainer()->get('router')->generate('create_order', [], false);
+      $route = $this->client->getContainer()->get('router')->generate('create_order', ['place' => $id], false);
       $crawler = $this->client->request('GET', $route, $data, array(), array(
         'X-Requested-With' => 'XMLHttpRequest',
       ));
