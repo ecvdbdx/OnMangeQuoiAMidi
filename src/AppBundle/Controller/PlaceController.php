@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\OrderGroup;
 use AppBundle\Entity\Place;
 use AppBundle\Form\OrderGroupType;
+use AppBundle\Form\OrderGroupNoJsType;
 use AppBundle\Form\PlaceType;
 use Ivory\GoogleMap\Base\Coordinate;
 use Ivory\GoogleMap\Map;
@@ -109,19 +110,83 @@ class PlaceController extends Controller
      */
     public function showAction(Request $request, Place $place)
     {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $tokenPath = null;
+
         $delete_form = $this->createDeleteForm($place);
 
         $orderGroup = new OrderGroup();
         $formOrder = $this->createForm(OrderGroupType::class, $orderGroup, array(
-            'action' => $this->generateUrl('create_order_nojs'),
             'method' => 'POST',
         ));
-        $formOrder->handleRequest($request);
+
+        $formOrderNoJs = $this->createForm(OrderGroupNoJsType::class, $orderGroup, array(
+            'method' => 'POST',
+        ));
+
+        if($request->isXmlHttpRequest()) {
+
+            if($user) {
+                
+                $formOrder->handleRequest($request);
+
+                $expiration_date = $request->get('expiration_date');
+                $expiration_date = str_replace('/', '-', $expiration_date);
+                $formatted_expiration_date = new \DateTime($expiration_date, new \DateTimeZone('Europe/Paris'));
+
+                $now = new \DateTime("now", new \DateTimeZone('Europe/Paris'));
+                $now->modify('+2 hour');
+
+                if ($formatted_expiration_date >= $now) {
+
+                    $token = uniqid();
+
+                    $orderGroup->setToken($token);
+                    $orderGroup->setExpirationDate($formatted_expiration_date);
+                    $orderGroup->setPlace($place);
+                    $orderGroup->setUser($user);
+                    $em->persist($orderGroup);
+                    $em->flush();
+
+                    return new JsonResponse($token);
+
+                }
+                else {
+                    return new JsonResponse('EH NON !');
+                }
+            
+            } else {
+                return new JsonResponse(false);
+            }
+        }
+        else {
+
+            if ($request->isMethod('POST')) {
+
+                $formOrderNoJs->handleRequest($request);
+
+                if ($formOrderNoJs->isValid()) {
+
+                    $token = uniqid();
+                    $tokenPath = 'http:'.$this->generateUrl('order_group_show', ['token' => $token], 3);
+
+                    $orderGroup->setToken($token);
+                    $orderGroup->setPlace($place);
+                    $orderGroup->setUser($user);
+                    $em->persist($orderGroup);
+                    $em->flush();
+                }
+            }
+        }
 
         return $this->render('place/show.html.twig', array(
             'place' => $place,
             'delete_form' => $delete_form->createView(),
-            'formOrderGroup' => $formOrder->createView()
+            'formOrderGroup' => $formOrder->createView(),
+            'formOrderGroupNoJs' => $formOrderNoJs->createView(),
+            'tokenPath' => $tokenPath
         ));
     }
 

@@ -3,6 +3,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\OrderGroup;
 use AppBundle\Form\OrderGroupType;
+use AppBundle\Form\OrderGroupNoJsType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Http\Discovery\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -49,7 +50,10 @@ class OrderGroupController extends Controller
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         if($user) {
+
             $orderGroup = new OrderGroup();
+
+            $formOrder->handleRequest($request);
 
             $place_id = $request->get('place_id');
             $expiration_date = $request->get('expiration_date');
