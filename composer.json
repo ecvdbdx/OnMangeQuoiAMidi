@@ -46,7 +46,8 @@
         "coresphere/console-bundle": "^0.5.0",
         "ob/highcharts-bundle": "^1.5",
         "beberlei/doctrineextensions": "^1.0",
-        "phpmetrics/phpmetrics": "^2.2"
+        "phpmetrics/phpmetrics": "^2.2",
+        "friendsofsymfony/jsrouting-bundle": "^1.6"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
