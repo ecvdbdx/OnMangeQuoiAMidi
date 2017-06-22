@@ -17,7 +17,14 @@ class GeneratePlaceImage
         }
         $slugify = new Slugify();
         $id = uniqid($slugify->slugify($entity->getName()).'_');
-        $dest = __DIR__ . '/../../../web/images/places/'.$id.'.png';
+
+        $path = __DIR__ . '/../../../web/images/places/';
+
+        if (!file_exists($path)) {
+          mkdir($path, 0777, true);
+        }
+
+        $dest = $path.$id.'.png';
         $src = 'http://placeimg.com/500/200/arch/grayscale?random=1';
 
         if(copy($src, $dest)){
