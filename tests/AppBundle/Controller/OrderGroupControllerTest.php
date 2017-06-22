@@ -18,52 +18,10 @@ class OrderGroupControllerTest extends WebTestCase
         $this->em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
     }
 
-    public function createAuthorizedClient()
-    {
-        $this->client = static::createClient();
-        $container = static::$kernel->getContainer();
-        $session = $container->get('session');
-
-        $user = new User();
-        $user->setUsername('testuser');
-        $user->setEmail('testuser@email.com');
-        $user->setPassword('testuserpass');
-        $user->addRole('ROLE_ADMIN');
-        $user->setEnabled(true);
-        $this->em->persist($user);
-        $this->em->flush();
-
-        $person = self::$kernel->getContainer()->get('doctrine')->getRepository('AppBundle:User')->findOneByUsername('testuser');
-
-        $token = new UsernamePasswordToken($person, null, 'main', $person->getRoles());
-        $session->set('_security_main', serialize($token));
-        $session->save();
-
-        $this->client->getCookieJar()->set(new Cookie($session->getName(), $session->getId()));
-
-        return $this->client;
-    }
-
-    public function removeTestClient()
-    {
-        $container = static::$kernel->getContainer();
-        $session = $container->get('session');
-
-
-        $user = self::$kernel->getContainer()->get('doctrine')->getRepository('AppBundle:User')->findOneByUsername('testuser');
-        $user = $this->em->merge($user);
-        $this->em->remove($user);
-        $this->em->flush();
-
-        $session->set('_security_main', '');
-        $session->save();
-
-        $this->client->getCookieJar()->set(new Cookie($session->getName(), $session->getId()));
-    }
-
     public function testGenerateTokenAndDelete()
     {
-      $this->client = $this->createAuthorizedClient();
+      $testUser = $this->client->getContainer()->get('testUser');
+      $this->client = $testUser->createAuthorizedClient();
 
       $route = $this->client->getContainer()->get('router')->generate('place_index', [], false);
       $crawler = $this->client->request('GET', $route);
@@ -99,6 +57,6 @@ class OrderGroupControllerTest extends WebTestCase
       $this->em->remove($orderGroup);
       $this->em->flush();
 
-      $this->removeTestClient();
+      $testUser->removeTestClient($this->client);
     }
 }
