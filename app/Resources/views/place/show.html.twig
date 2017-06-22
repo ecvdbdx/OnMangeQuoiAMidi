@@ -126,7 +126,15 @@
     <br>
 
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        {{ form_start(formOrderGroup) }}
+        {{ form_start(formOrderGroupNoJs, {'attr': {'class': 'nojs'}}) }}
+            <h3>Générer un jeton</h3>
+            {{ form_widget(formOrderGroupNoJs) }}
+            <input type="submit" class="btn btn-primary btn-test" value="Generate token bitch"/>
+            <div class="tokenInfo"></div>
+            <input type="hidden" value="{{ place.id }}" name="place">
+        {{ form_end(formOrderGroupNoJs) }}
+
+        {{ form_start(formOrderGroup, {'attr': {'class': 'js', 'style': 'display: none'}}) }}
             <h3>Générer un jeton</h3>
             {{ form_widget(formOrderGroup) }}
             <input type="submit" class="btn btn-primary btn-test" value="Generate token bitch"/>
@@ -145,6 +153,10 @@ $(document).ready(function(){
         dateFormat: 'yy-mm-dd H:i',
         minDate:'0',
     });
+
+    $('.nojs').hide();
+    $('.js').show();
+
 });
 </script>
 {% endblock %}

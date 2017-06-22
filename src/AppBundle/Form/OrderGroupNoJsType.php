@@ -8,16 +8,14 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class OrderGroupType extends AbstractType
+class OrderGroupNoJsType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('expirationDate', TextType::class, array(
-            'attr' => array('class' => 'datetimepicker', 'maxlength' => '16')
-            ));
+        $builder->add('expirationDate', DateTimeType::class, array('data' => new \DateTime()));
     }
     
     /**

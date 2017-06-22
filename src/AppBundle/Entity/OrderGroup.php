@@ -28,12 +28,6 @@ class OrderGroup extends EntityInfos
      *
      * @ORM\Column(name="expiration_date", type="datetime")
      *
-     * @Assert\Length(
-     *      min = 16,
-     *      max = 16,
-     *      minMessage = "Date incorrect",
-     *      maxMessage = "Date incorrect"
-     * )
      */
     private $expirationDate;
 
