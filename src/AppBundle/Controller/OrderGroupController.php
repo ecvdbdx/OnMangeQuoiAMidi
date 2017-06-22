@@ -24,7 +24,7 @@ class OrderGroupController extends Controller
    * Finds and displays an OrderGroup entity.
    *
    * @Route("/order/{token}", name="order_group_show")
-   * @Method({"GET"})
+   * @Method({"GET", "POST"})
    */
    public function showAction($token)
    {
