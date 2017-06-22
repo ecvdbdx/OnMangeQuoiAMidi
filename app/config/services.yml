@@ -27,4 +27,6 @@ services:
     infoProvider:
         class: AppBundle\Service\InfoProvider
         arguments: ["@doctrine.orm.entity_manager"]
-        
+    testUser:
+        class: AppBundle\Service\TestUser
+        arguments: ["@doctrine.orm.entity_manager"]
