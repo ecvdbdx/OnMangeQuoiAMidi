@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
             // Optionally

@@ -114,6 +114,13 @@ class Place extends EntityInfos
     private $facebook;
 
     /**
+    * @var string
+    *
+    * @ORM\Column(name="image", type="string")
+    */
+    private $image;
+
+    /**
      * @ORM\OneToMany(targetEntity="Meal", mappedBy="place", cascade={"remove"})
      */
     private $meals;
@@ -397,6 +404,25 @@ class Place extends EntityInfos
         return $this;
     }
 
+    /**
+    * @return string
+    */
+    public function getImage()
+    {
+      return $this->image;
+    }
+
+    /**
+    * @param string $image
+    * @return Place
+    */
+    public function setImage($image)
+    {
+      $this->image = $image;
+
+      return $this;
+    }
+
     public function getMeals()
     {
         return $this->meals;
@@ -429,4 +455,3 @@ class Place extends EntityInfos
         $this->menus->removeElement($menu);
     }
 }
-

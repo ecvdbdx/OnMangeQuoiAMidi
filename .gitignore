@@ -101,6 +101,8 @@ crashlytics-build.properties
 # Assets and user uploads
 /web/bundles/
 /web/uploads/
+/web/images/
+/web/media/
 
 # PHPUnit
 /app/phpunit.xml
