@@ -35,6 +35,7 @@ class OrderGroupControllerTest extends WebTestCase
       preg_match_all('/(place\/)([\d]+)/',$location, $matches);
 
       $id = $matches[2][0];
+      var_dump($matches);
 
       $date = new \DateTime();
       $date->add(new \DateInterval('P10D'));
@@ -43,7 +44,7 @@ class OrderGroupControllerTest extends WebTestCase
         'expiration_date' => $date->format('Y-m-d\TH:i')
       );
 
-      $route = $this->client->getContainer()->get('router')->generate('create_order', ['place' => $id], false);
+      $route = $this->client->getContainer()->get('router')->generate('place_show', ['place' => $id], false);
       $crawler = $this->client->request('GET', $route, $data, array(), array(
         'X-Requested-With' => 'XMLHttpRequest',
       ));
