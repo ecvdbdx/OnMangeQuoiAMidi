@@ -16,6 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Place controller.
@@ -154,7 +155,7 @@ class PlaceController extends Controller
 
                 }
                 else {
-                    return new JsonResponse('EH NON !');
+                    return new JsonResponse('La date est incorrect');
                 }
             
             } else {
@@ -179,15 +180,16 @@ class PlaceController extends Controller
                     $em->flush();
                 }
             }
-        }
+        
 
-        return $this->render('place/show.html.twig', array(
-            'place' => $place,
-            'delete_form' => $delete_form->createView(),
-            'formOrderGroup' => $formOrder->createView(),
-            'formOrderGroupNoJs' => $formOrderNoJs->createView(),
-            'tokenPath' => $tokenPath
-        ));
+            return $this->render('place/show.html.twig', array(
+                'place' => $place,
+                'delete_form' => $delete_form->createView(),
+                'formOrderGroup' => $formOrder->createView(),
+                'formOrderGroupNoJs' => $formOrderNoJs->createView(),
+                'tokenPath' => $tokenPath
+            ));
+        }
     }
 
     /**

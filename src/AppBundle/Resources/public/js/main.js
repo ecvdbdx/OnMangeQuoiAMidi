@@ -49,9 +49,11 @@ $(".btn-test").click(function(e){
 
     var placeId = $('input[name="place"]').val();
     var expirationDate = $('input[name="appbundle_ordergroup[expirationDate]"]').val();
-    var route = Routing.generate('create_order',{}, true);
+    var route = Routing.generate('place_show',{place: placeId}, true);
 
-    $.get(route,{place_id: placeId, expiration_date: expirationDate}, function(data, status) {
+    console.log(route);
+
+    $.get(route,{expiration_date: expirationDate}, function(data, status) {
         if (data) {
             tokenSuccess(true, data);
         } else {
