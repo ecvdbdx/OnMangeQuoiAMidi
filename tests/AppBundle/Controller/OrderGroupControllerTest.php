@@ -62,6 +62,30 @@ class OrderGroupControllerTest extends WebTestCase
         $this->em->flush();
       }
 
+      /*
+      $crawler = $this->client->request('GET', '/orderGroup/order/'.$token);
+      $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+      $input = $crawler
+        ->filter('input[type="number"]')
+        ->eq(0)
+        ->attr('name');
+
+      $form = $crawler->filter('form')->form();
+      $form["$input"] = '1';
+
+      var_dump($form);
+
+      $this->client->submit($form);
+
+      //Reste à vérifier que la commande est bien sur la page, puis la supprimer de la BDD
+      */
+
+
+      $orderGroup = self::$kernel->getContainer()->get('doctrine')->getRepository('AppBundle:OrderGroup')->findOneByToken($token);
+      $orderGroup = $this->em->merge($orderGroup);
+      $this->em->remove($orderGroup);
+      $this->em->flush();
+
       $testUser->removeTestClient($this->client);
     }
 }
