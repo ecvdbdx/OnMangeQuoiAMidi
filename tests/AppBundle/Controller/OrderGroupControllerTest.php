@@ -20,7 +20,10 @@ class OrderGroupControllerTest extends WebTestCase
 
     public function testGenerateTokenAndDelete()
     {
+
       $testUser = $this->client->getContainer()->get('testUser');
+      $testUser->removeTestClient($this->client);
+
       $this->client = $testUser->createAuthorizedClient();
 
       $route = $this->client->getContainer()->get('router')->generate('place_index', [], false);
@@ -35,7 +38,6 @@ class OrderGroupControllerTest extends WebTestCase
       preg_match_all('/(place\/)([\d]+)/',$location, $matches);
 
       $id = $matches[2][0];
-      var_dump($matches);
 
       $date = new \DateTime();
       $date->add(new \DateInterval('P10D'));
@@ -53,10 +55,13 @@ class OrderGroupControllerTest extends WebTestCase
 
       $token = json_decode($this->client->getResponse()->getContent());
 
-      $orderGroup = self::$kernel->getContainer()->get('doctrine')->getRepository('AppBundle:OrderGroup')->findOneByToken($token);
-      $orderGroup = $this->em->merge($orderGroup);
-      $this->em->remove($orderGroup);
-      $this->em->flush();
+      if ($token != null)
+      {
+        $orderGroup = self::$kernel->getContainer()->get('doctrine')->getRepository('AppBundle:OrderGroup')->findOneByToken($token);
+        $orderGroup = $this->em->merge($orderGroup);
+        $this->em->remove($orderGroup);
+        $this->em->flush();
+      }
 
       $testUser->removeTestClient($this->client);
     }
