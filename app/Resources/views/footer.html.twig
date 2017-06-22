@@ -1,0 +1,6 @@
+<footer class="footer">
+    <p>&copy; {{ "now"|date("Y") }} On Mange Quoi À Midi</p>
+    {% if app.environment == 'prod' %}
+        <p>Dernier build : {{last_commit|date("d/m/Y")}}</p>
+    {% endif %}
+</footer>

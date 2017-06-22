@@ -26,6 +26,17 @@ class DefaultController extends Controller
             'base_dir' => 'toto',
         ]);
     }
+
+    public function footerAction()
+    {
+        $lastBuildDate = shell_exec('git log -1 --format=%cd');
+        $strippedLastBuildDate = str_replace('+0200', '', $lastBuildDate);
+
+        return $this->render('footer.html.twig', array(
+            'last_commit' => $strippedLastBuildDate,
+        ));
+    }
+
     /**
      * @Route("/testmail", name="testmail")
      */
