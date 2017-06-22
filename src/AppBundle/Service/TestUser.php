@@ -19,7 +19,7 @@ class TestUser extends WebTestCase
     public function createAuthorizedClient()
     {
         $client = static::createClient();
-        $container = static::$kernel->getContainer();
+        $container = $client->getContainer();
         $session = $container->get('session');
 
         $user = new User();
@@ -31,7 +31,7 @@ class TestUser extends WebTestCase
         $this->em->persist($user);
         $this->em->flush();
 
-        $person = self::$kernel->getContainer()->get('doctrine')->getRepository('AppBundle:User')->findOneByUsername('testuser');
+        $person = $container->get('doctrine')->getRepository('AppBundle:User')->findOneByUsername('testuser');
 
         $token = new UsernamePasswordToken($person, null, 'main', $person->getRoles());
         $session->set('_security_main', serialize($token));
@@ -47,8 +47,7 @@ class TestUser extends WebTestCase
         $container = static::$kernel->getContainer();
         $session = $container->get('session');
 
-
-        $user = self::$kernel->getContainer()->get('doctrine')->getRepository('AppBundle:User')->findOneByUsername('testuser');
+        $user = $container->get('doctrine')->getRepository('AppBundle:User')->findOneByUsername('testuser');
         $user = $this->em->merge($user);
         $this->em->remove($user);
         $this->em->flush();
