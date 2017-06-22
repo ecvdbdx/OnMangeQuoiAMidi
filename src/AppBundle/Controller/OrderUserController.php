@@ -49,8 +49,12 @@ class OrderUserController extends Controller
         $orderUser = new OrderUser();
         $orderUser->setUser($user)->setOrderGroup($orderGroup);
 
-        $mustPersistOrderUser = $this->extractAndPersistMeals($data, $em, $orderUser);
-        $mustPersistOrderUser |= $this->extractAndPersistMenus($data, $em, $orderUser);
+        if(isset($data['meal'])) {
+            $mustPersistOrderUser = $this->extractAndPersistMeals($data, $em, $orderUser);
+        }
+        if(isset($data['menu'])) {
+            $mustPersistOrderUser |= $this->extractAndPersistMenus($data, $em, $orderUser);
+        }
 
         if ($mustPersistOrderUser) {
             $em->persist($orderUser);
