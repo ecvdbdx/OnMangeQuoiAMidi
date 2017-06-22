@@ -126,6 +126,7 @@
     <br>
 
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    {#
         {{ form_start(formOrderGroupNoJs, {'attr': {'class': 'nojs'}}) }}
             <h3>Générer un jeton</h3>
             {{ form_widget(formOrderGroupNoJs) }}
@@ -133,7 +134,7 @@
             <div class="tokenInfo"></div>
             <input type="hidden" value="{{ place.id }}" name="place">
         {{ form_end(formOrderGroupNoJs) }}
-
+    #}
         {{ form_start(formOrderGroup, {'attr': {'class': 'js', 'style': 'display: none'}}) }}
             <h3>Générer un jeton</h3>
             {{ form_widget(formOrderGroup) }}

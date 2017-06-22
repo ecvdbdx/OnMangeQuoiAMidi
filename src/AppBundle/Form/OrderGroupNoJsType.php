@@ -33,7 +33,7 @@ class OrderGroupNoJsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_ordergroup';
+        return 'appbundle_ordergroupnojs';
     }
 
 

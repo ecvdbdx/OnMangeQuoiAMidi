@@ -101,4 +101,4 @@ ivory_google_map:
         api_key: "%gmap_key%"
 
 fos_js_routing:
-    routes_to_expose: [ 'order_group_show', 'create_order'  ]
+    routes_to_expose: [ 'order_group_show', 'create_order', 'place_show'  ]
